@@ -24,6 +24,11 @@ int	main(void)
 		handle_signals();
 		while (1)
 		{
+			if (g_signal_received)
+			{
+				g_signal_received = 0;
+				continue;
+			}
 			if (getcwd(cwd, sizeof(cwd)) == NULL)
 			{
 				perror("getcwd");

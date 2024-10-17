@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:00:13 by antfonse          #+#    #+#             */
-/*   Updated: 2024/10/15 20:01:52 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/10/17 17:28:43 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ typedef struct s_pipe
 // PARSING DICTIONARIES
 # define MS_SPACE		" \t\r\n\v"
 # define MS_TOKENS		"<|>"
+# define MS_QUOTES		"\"\'"
+# define MS_VAR_CHAR	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\
+0123456789_"
 
 // TOKEN SYMBOLS
 # define TOKEN_PIPE	'|'
@@ -75,6 +78,9 @@ typedef struct s_pipe
 # define TOKEN_DELI	'd'  // DELIMITER
 # define TOKEN_APPE	'a'  // APPEND
 # define TOKEN_TEXT	't'
+
+// VARIABLES
+# define VAR_BUFFER		50
 
 // PARSER
 void	print_tree(t_cmd *node);
@@ -86,6 +92,8 @@ int	look_token(char **cmdline, char *tokens);
 int	parse_token(char **cmdline, char **stoken, char **etoken);
 t_cmd	*parse_pipe(char **cmdline);
 t_cmd	*parse_tree(char *cmdline);
+char	*expand_var(char *str, char *end, char **sub_start, char **sub_end);
+char	*substr_expans(char *start, char *end);
 
 // PROMPT
 char	*ft_prepare_prompt(void);
@@ -109,5 +117,8 @@ void	free_tree(t_cmd *tree);
 // SIGNALS
 void	handle_signals(void);
 void	handle_sigint(int sig);
+
+// GLOBAL VARIABLE
+extern volatile sig_atomic_t g_signal_received;
 
 #endif
