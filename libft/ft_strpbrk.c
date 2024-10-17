@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 10:58:56 by madao-da          #+#    #+#             */
-/*   Updated: 2024/10/14 15:37:53 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/10/14 15:53:00 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/10/14 15:53:18 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
+char *ft_strpbrk(const char *s, const char *accept)
 {
-	size_t	i;
-
-	i = 0;
-	while (*str1 && *str1 == *str2)
+	while (*s)
 	{
-		str1++;
-		str2++;
-		i++;
+		if (ft_strchr(accept, *s))
+			return ((char *)s);
+		s++;
 	}
-	return (*str1 - *str2);
+	return (NULL);
 }

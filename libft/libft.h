@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madao-da <madao-da@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:45:48 by madao-da          #+#    #+#             */
-/*   Updated: 2023/10/10 12:31:44 by madao-da         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:50:02 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(const char *s, char c);
 char	*ft_strchr(const char *str, int c);
-int		ft_strcmp(const char *str1, const char *str2, size_t n);
+int		ft_strcmp(const char *str1, const char *str2);
 char	*ft_strdup(const char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
@@ -68,5 +68,9 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char *ft_strtok(char *str, const char *delim);
+char *ft_strpbrk(const char *s, const char *accept);
+char *ft_strcpy(char *dest, const char *src);
+char *ft_strcat(char *dest, const char *src);
 
 #endif

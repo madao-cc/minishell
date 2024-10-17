@@ -35,6 +35,11 @@ SRCS  = ft_isalpha.c\
 	ft_putnbr_fd.c\
 	ft_strncmp.c\
 	ft_memcmp.c\
+	ft_strtok.c\
+	ft_strpbrk.c\
+	ft_strcpy.c\
+	ft_strcat.c\
+	ft_strcmp.c\
 
 BONUS = ft_lstadd_back.c\
 	ft_lstadd_front.c\

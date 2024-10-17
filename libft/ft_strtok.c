@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 10:58:56 by madao-da          #+#    #+#             */
-/*   Updated: 2024/10/14 15:37:53 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/10/14 15:49:51 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/10/14 15:50:10 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
+char *ft_strtok(char *str, const char *delim)
 {
-	size_t	i;
+	static char *save = NULL;
+	char *token;
+	char *tmp;
 
-	i = 0;
-	while (*str1 && *str1 == *str2)
+	if (str)
+		save = str;
+	if (!save)
+		return (NULL);
+	token = save;
+	if (!(tmp = ft_strpbrk(save, delim)))
+		save = NULL;
+	else
 	{
-		str1++;
-		str2++;
-		i++;
+		*tmp = '\0';
+		save = tmp + 1;
 	}
-	return (*str1 - *str2);
+	return (token);
 }

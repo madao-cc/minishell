@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 10:58:56 by madao-da          #+#    #+#             */
-/*   Updated: 2024/10/14 15:37:53 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/10/14 18:49:36 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/10/14 18:49:53 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
+char	*ft_strcat(char *dest, const char *src)
 {
-	size_t	i;
+	int i;
+	int j;
 
 	i = 0;
-	while (*str1 && *str1 == *str2)
-	{
-		str1++;
-		str2++;
+	j = 0;
+	while (dest[i])
 		i++;
+	while (src[j])
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	return (*str1 - *str2);
+	dest[i] = '\0';
+	return (dest);
 }
