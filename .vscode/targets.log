@@ -1,0 +1,730 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Nov  4 16:52:37 2024
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# makefile (from 'Makefile', line 8)
+AR = ar -rc
+# makefile (from 'Makefile', line 58)
+OBJS_ENVIRONMENT = $(patsubst $(SRCFOLDER_ENVIRONMENT)/%.c, $(OBJFOLDER_ENVIRONMENT)/%.o, $(SRC_ENVIRONMENT))
+# environment
+LC_NAME = pt_PT.UTF-8
+# environment
+LC_NUMERIC = pt_PT.UTF-8
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+# environment
+VSCODE_CWD = /home/mikelitoris
+# makefile (from 'Makefile', line 37)
+OBJFOLDER_ERRORH = source/obj_error_handling
+# makefile (from 'Makefile', line 46)
+SRC_EXECUT = $(wildcard $(SRCFOLDER_EXECUT)/*.c)
+# environment
+LC_ADDRESS = pt_PT.UTF-8
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# makefile (from 'Makefile', line 51)
+SRC_SIGNALS = $(wildcard $(SRCFOLDER_SIGNALS)/*.c)
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/mikelitoris/42/Rank_3/minishell
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# makefile (from 'Makefile', line 28)
+SRCFOLDER_ERRORH = source/error_handling
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/mikelitoris/.config/Code/CachedData/65edc4939843c90c34d61f4ce11704f09d3e5cb6
+# makefile (from 'Makefile', line 25)
+SRCFOLDER_PARSER = source/parser
+# environment
+LANG = C
+# environment
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.L3MRW2
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrRs
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=c703b3bdd5d82a6646bcc1356728da01
+# makefile
+CURDIR := /home/mikelitoris/42/Rank_3/minishell
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# makefile (from 'Makefile', line 53)
+OBJS_PARSER = $(patsubst $(SRCFOLDER_PARSER)/%.c, $(OBJFOLDER_PARSER)/%.o, $(SRC_PARSER))
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrRs
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 49)
+SRC_BUILTIN = $(wildcard $(SRCFOLDER_BUILTIN)/*.c)
+# environment
+WAYLAND_DISPLAY = wayland-0
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# makefile (from 'Makefile', line 57)
+OBJS_BUILTIN = $(patsubst $(SRCFOLDER_BUILTIN)/%.c, $(OBJFOLDER_BUILTIN)/%.o, $(SRC_BUILTIN))
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 17456
+# environment
+XDG_SESSION_TYPE = wayland
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'Makefile', line 38)
+OBJFOLDER_BUILTIN = source/obj_built_in
+# makefile (from 'Makefile', line 40)
+OBJFOLDER_SIGNALS = source/obj_signals
+# environment
+SESSION_MANAGER = local/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:@/tmp/.ICE-unix/1337,unix/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:/tmp/.ICE-unix/1337
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=c703b3bdd5d82a6646bcc1356728da01
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile (from 'Makefile', line 61)
+OBJS = $(OBJS_PARSER) $(OBJS_EXECUT) $(OBJS_INITCL) $(OBJS_ERRORH) $(OBJS_BUILTIN) $(OBJS_ENVIRONMENT) $(OBJS_SIGNALS)
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# makefile (from 'Makefile', line 43)
+HEADFOLDER = includes
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# environment
+IM_CONFIG_CHECK_ENV = 1
+# makefile (from 'Makefile', line 26)
+SRCFOLDER_EXECUT = source/execution
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin
+# default
+MAKEFILES := 
+# environment
+LC_MONETARY = pt_PT.UTF-8
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 63)
+ 
+HEADER = $(HEADFOLDER)/minishell.h
+# environment
+LC_TIME = pt_PT.UTF-8
+# makefile (from 'Makefile', line 27)
+SRCFOLDER_INITCL = source/init_close
+# environment
+INVOCATION_ID = f33c728a8cec43589584238d35581c28
+# environment
+USERNAME = mikelitoris
+# makefile (from 'Makefile', line 30)
+SRCFOLDER_ENVIRONMENT = source/environment
+# makefile (from 'Makefile', line 15)
+GREEN = \033[92m
+# environment
+GNOME_SETUP_DISPLAY = :1
+# makefile (from 'Makefile', line 21)
+LIBFOLDER = LIBFT
+# makefile (from 'Makefile', line 54)
+OBJS_EXECUT = $(patsubst $(SRCFOLDER_EXECUT)/%.c, $(OBJFOLDER_EXECUT)/%.o, $(SRC_EXECUT))
+# environment
+LC_TELEPHONE = pt_PT.UTF-8
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 107)
+define SUPRESSION_FILE_BODY
+{
+   name
+   Memcheck:Leak
+   fun:*alloc
+   ...
+   obj:*/libreadline.so.*
+   ...
+}
+{
+    leak readline
+    Memcheck:Leak
+    ...
+    fun:readline
+}
+{
+    leak add_history
+    Memcheck:Leak
+    ...
+    fun:add_history
+}
+endef
+# makefile (from 'Makefile', line 18)
+NAME = minishell
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# makefile (from 'Makefile', line 59)
+OBJS_SIGNALS = $(patsubst $(SRCFOLDER_SIGNALS)/%.c, $(OBJFOLDER_SIGNALS)/%.o, $(SRC_SIGNALS))
+# makefile (from 'Makefile', line 50)
+SRC_ENVIRONMENT = $(wildcard $(SRCFOLDER_ENVIRONMENT)/*.c)
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = mikelitoris
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 1337
+# makefile (from 'Makefile', line 10)
+RM = rm -rf
+# environment
+DISPLAY = :0
+# environment
+USER = mikelitoris
+# environment
+GTK_MODULES = gail:atk-bridge
+# default
+MAKE_VERSION := 4.3
+# makefile (from 'Makefile', line 35)
+OBJFOLDER_EXECUT = source/obj_execution
+# makefile (from 'Makefile', line 48)
+SRC_ERRORH = $(wildcard $(SRCFOLDER_ERRORH)/*.c)
+# makefile (from 'Makefile', line 39)
+OBJFOLDER_ENVIRONMENT = source/obj_environment
+# makefile (from 'Makefile', line 31)
+SRCFOLDER_SIGNALS = source/signals
+# environment
+MANAGERPID = 1105
+# environment
+DBUS_STARTER_BUS_TYPE = session
+# environment
+LC_MEASUREMENT = pt_PT.UTF-8
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 17456
+# environment
+_ = /usr/share/code/code
+# makefile (from 'Makefile', line 16)
+RESET = \033[0m
+# environment
+LC_PAPER = pt_PT.UTF-8
+# makefile (from 'Makefile', line 29)
+SRCFOLDER_BUILTIN = source/built_in
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 6)
+CFLAGS = -Wall -Werror -Wextra
+# makefile (from 'Makefile', line 47)
+SRC_INITCL = $(wildcard $(SRCFOLDER_INITCL)/*.c)
+# makefile (from 'Makefile', line 56)
+OBJS_ERRORH = $(patsubst $(SRCFOLDER_ERRORH)/%.c, $(OBJFOLDER_ERRORH)/%.o, $(SRC_ERRORH))
+# environment
+LC_CTYPE = pt_PT.UTF-8
+# environment
+JOURNAL_STREAM = 8:4048
+# environment
+XDG_SESSION_CLASS = user
+# makefile (from 'Makefile', line 36)
+OBJFOLDER_INITCL = source/obj_init_close
+# environment
+HOME = /home/mikelitoris
+# environment
+QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 55)
+OBJS_INITCL = $(patsubst $(SRCFOLDER_INITCL)/%.c, $(OBJFOLDER_INITCL)/%.o, $(SRC_INITCL))
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-af1ed2d2-1.95-main.sock
+# makefile (from 'Makefile', line 22)
+LIBNAME = $(LIBFOLDER)/libft.a
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# makefile (from 'Makefile', line 34)
+OBJFOLDER_PARSER = source/obj_parser
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 12)
+SUPR_FILE = valgrind_supression
+# makefile (from 'Makefile', line 4)
+CC = cc
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'Makefile', line 45)
+SRC_PARSER = $(wildcard $(SRCFOLDER_PARSER)/*.c)
+# environment
+GDMSESSION = ubuntu
+# environment
+LC_IDENTIFICATION = pt_PT.UTF-8
+# variable set hash-table stats:
+# Load=146/1024=14%, Rehash=0, Collisions=21/256=8%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# source/error_handling (device 66306, inode 31486238): 4 files, no impossibilities.
+# source/parser (device 66306, inode 31486250): 15 files, no impossibilities.
+# source/signals (device 66306, inode 31471006): 3 files, no impossibilities.
+# source/init_close (device 66306, inode 31486243): 4 files, no impossibilities.
+# source/environment (device 66306, inode 31474817): 6 files, no impossibilities.
+# . (device 66306, inode 31486543): 11 files, no impossibilities.
+# includes (device 66306, inode 31486235): No files, no impossibilities so far.
+# source/built_in (device 66306, inode 31474816): 10 files, no impossibilities.
+# source/execution (device 66306, inode 31486240): 5 files, no impossibilities.
+
+# 58 files, no impossibilities in 9 directories.
+
+# Implicit Rules
+
+source/obj_parser/%.o: source/parser/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 72):
+	@mkdir -p $(OBJFOLDER_PARSER)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+source/obj_execution/%.o: source/execution/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 76):
+	@mkdir -p $(OBJFOLDER_EXECUT)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+source/obj_built_in/%.o: source/built_in/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 80):
+	@mkdir -p $(OBJFOLDER_BUILTIN)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+source/obj_init_close/%.o: source/init_close/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 84):
+	@mkdir -p $(OBJFOLDER_INITCL)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+source/obj_error_handling/%.o: source/error_handling/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 88):
+	@mkdir -p $(OBJFOLDER_ERRORH)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+ 
+source/obj_environment/%.o: source/environment/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 92):
+	@mkdir -p $(OBJFOLDER_ENVIRONMENT)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+source/obj_signals/%.o: source/signals/%.c includes/minishell.h
+#  recipe to execute (from 'Makefile', line 96):
+	@mkdir -p $(OBJFOLDER_SIGNALS)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+# 7 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+source/obj_built_in/built_in.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_execution/exec_tree.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+includes/minishell.h:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-04 16:29:12.985613782
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+source/obj_parser/minishell_parser_functions_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_ast_02.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_built_in/env.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+minishell: source/obj_parser/minishell_ast_01.o source/obj_parser/minishell_ast_02.o source/obj_parser/minishell_ast_03.o source/obj_parser/minishell_ast_04.o source/obj_parser/minishell_ast_05.o source/obj_parser/minishell_check_error_01.o source/obj_parser/minishell_check_error_02.o source/obj_parser/minishell_expansion_01.o source/obj_parser/minishell_heredoc_01.o source/obj_parser/minishell_parser_functions_01.o source/obj_parser/minishell_parser_functions_02.o source/obj_parser/minishell_str_functions_01.o source/obj_parser/minishell_str_functions_02.o source/obj_execution/exec_tree.o source/obj_execution/exec_utils.o source/obj_execution/main.o source/obj_init_close/minishell_init_close_01.o source/obj_init_close/minishell_init_close_02.o source/obj_error_handling/error_message.o source/obj_error_handling/minishell_error_handling_01.o source/obj_built_in/built_in.o source/obj_built_in/cd.o source/obj_built_in/echo.o source/obj_built_in/env.o source/obj_built_in/exit.o source/obj_built_in/export.o source/obj_built_in/pwd.o source/obj_built_in/unset.o source/obj_environment/copier.o source/obj_environment/expander.o source/obj_environment/reducer.o source/obj_environment/var_utils.o source/obj_signals/signals.o includes/minishell.h LIBFT/libft.a
+#  Implicit rule search has not been done.
+#  Last modified 2024-11-04 16:37:07.964464758
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  recipe to execute (from 'Makefile', line 68):
+	$(CC) $(CFLAGS) $(OBJS) $(LIBNAME) -o $(NAME) -lreadline -g
+	@echo "[$(GREEN)SUCCESS$(RESET)] MINISHELL - $(NAME) CREATED."
+	
+
+# Not a target:
+source/obj_built_in/echo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_built_in/export.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+
+# Not a target:
+source/obj_environment/copier.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-04 15:49:15.414963398
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+source/obj_environment/var_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_str_functions_02.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 131):
+	$(RM) $(OBJFOLDER_PARSER)/ $(OBJS_PARSER)
+	$(RM) $(OBJFOLDER_EXECUT)/ $(OBJS_EXECUT)
+	$(RM) $(OBJFOLDER_BUILTF)/ $(OBJS_BUILTIN)
+	$(RM) $(OBJFOLDER_INITCL)/ $(OBJS_INITCL)
+	$(RM) $(OBJFOLDER_ERRORH)/ $(OBJS_ERRORH)
+	$(RM) $(OBJFOLDER_ENVIRONMENT)/ $(OBJS_ENVIRONMENT)
+	$(RM) $(OBJFOLDER_SIGNALS)/ $(OBJS_SIGNALS)
+	make clean -C $(LIBFOLDER)
+	@echo "[$(GREEN)SUCCESS$(RESET)] MINISHELL - ALL OBJS DELETED."
+
+source/obj_parser/minishell_ast_01.o: source/parser/minishell_ast_01.c includes/minishell.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'minishell_ast_01'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := source/obj_parser/minishell_ast_01.o
+# automatic
+# * := minishell_ast_01
+# automatic
+# < := source/parser/minishell_ast_01.c
+# automatic
+# + := source/parser/minishell_ast_01.c includes/minishell.h
+# automatic
+# % := 
+# automatic
+# ^ := source/parser/minishell_ast_01.c includes/minishell.h
+# automatic
+# ? := source/parser/minishell_ast_01.c includes/minishell.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  recipe to execute (from 'Makefile', line 72):
+	@mkdir -p $(OBJFOLDER_PARSER)
+	$(CC) $(CFLAGS) -c $< -o $@ -g
+
+valgrind:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 103):
+	$(file > $(SUPR_FILE),$(SUPRESSION_FILE_BODY))
+	@valgrind --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=$(SUPR_FILE) --tool=memcheck ./$(NAME)
+	$(RM) $(SUPR_FILE)
+
+# Not a target:
+source/obj_init_close/minishell_init_close_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_execution/exec_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_ast_05.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_environment/expander.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+source/obj_error_handling/minishell_error_handling_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_execution/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_heredoc_01.o:
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_str_functions_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_error_handling/error_message.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 142):
+	$(RM) $(NAME)
+	make fclean -C $(LIBFOLDER)
+	@echo "[$(GREEN)SUCCESS$(RESET)] MINISHELL - PROGRAM DELETED."
+
+# Not a target:
+source/obj_parser/minishell_ast_04.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_check_error_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_signals/signals.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_check_error_02.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_environment/reducer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_built_in/cd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_built_in/unset.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_init_close/minishell_init_close_02.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/parser/minishell_ast_01.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-04 14:42:01.278611921
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+source/obj_parser/minishell_ast_03.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+LIBFT/libft.a:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 100):
+	make -C $(LIBFOLDER)
+
+# Not a target:
+source/obj_built_in/exit.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ 
+source/obj_parser/minishell_expansion_01.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_parser/minishell_parser_functions_02.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+source/obj_built_in/pwd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=46/1024=4%, Rehash=0, Collisions=0/107=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 112 / storage = 2489 B / avg = 22 B
+# current buf: size = 8162 B / used = 2489 B / count = 112 / avg = 22 B
+
+# strcache performance: lookups = 160 / hit rate = 30%
+# hash-table stats:
+# Load=112/8192=1%, Rehash=0, Collisions=0/160=0%
+# Finished Make data base on Mon Nov  4 16:52:37 2024
+
+ 

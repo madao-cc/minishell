@@ -1,0 +1,75 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/mikelitoris/42/Rank_3/minishell'
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_ast_01.c -o source/obj_parser/minishell_ast_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_ast_02.c -o source/obj_parser/minishell_ast_02.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_ast_03.c -o source/obj_parser/minishell_ast_03.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_ast_04.c -o source/obj_parser/minishell_ast_04.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_ast_05.c -o source/obj_parser/minishell_ast_05.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_check_error_01.c -o source/obj_parser/minishell_check_error_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_check_error_02.c -o source/obj_parser/minishell_check_error_02.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_expansion_01.c -o source/obj_parser/minishell_expansion_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_heredoc_01.c -o source/obj_parser/minishell_heredoc_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_parser_functions_01.c -o source/obj_parser/minishell_parser_functions_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_parser_functions_02.c -o source/obj_parser/minishell_parser_functions_02.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_str_functions_01.c -o source/obj_parser/minishell_str_functions_01.o -g
+mkdir -p source/obj_parser
+cc -Wall -Werror -Wextra -c source/parser/minishell_str_functions_02.c -o source/obj_parser/minishell_str_functions_02.o -g
+ 
+mkdir -p source/obj_execution
+cc -Wall -Werror -Wextra -c source/execution/exec_tree.c -o source/obj_execution/exec_tree.o -g
+mkdir -p source/obj_execution
+cc -Wall -Werror -Wextra -c source/execution/exec_utils.c -o source/obj_execution/exec_utils.o -g
+mkdir -p source/obj_execution
+cc -Wall -Werror -Wextra -c source/execution/main.c -o source/obj_execution/main.o -g
+mkdir -p source/obj_init_close
+cc -Wall -Werror -Wextra -c source/init_close/minishell_init_close_01.c -o source/obj_init_close/minishell_init_close_01.o -g
+mkdir -p source/obj_init_close
+cc -Wall -Werror -Wextra -c source/init_close/minishell_init_close_02.c -o source/obj_init_close/minishell_init_close_02.o -g
+mkdir -p source/obj_error_handling
+cc -Wall -Werror -Wextra -c source/error_handling/error_message.c -o source/obj_error_handling/error_message.o -g
+mkdir -p source/obj_error_handling
+cc -Wall -Werror -Wextra -c source/error_handling/minishell_error_handling_01.c -o source/obj_error_handling/minishell_error_handling_01.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/built_in.c -o source/obj_built_in/built_in.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/cd.c -o source/obj_built_in/cd.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/echo.c -o source/obj_built_in/echo.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/env.c -o source/obj_built_in/env.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/exit.c -o source/obj_built_in/exit.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/export.c -o source/obj_built_in/export.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/pwd.c -o source/obj_built_in/pwd.o -g
+mkdir -p source/obj_built_in
+cc -Wall -Werror -Wextra -c source/built_in/unset.c -o source/obj_built_in/unset.o -g
+ 
+mkdir -p source/obj_environment
+cc -Wall -Werror -Wextra -c source/environment/copier.c -o source/obj_environment/copier.o -g
+mkdir -p source/obj_environment
+cc -Wall -Werror -Wextra -c source/environment/expander.c -o source/obj_environment/expander.o -g
+mkdir -p source/obj_environment
+cc -Wall -Werror -Wextra -c source/environment/reducer.c -o source/obj_environment/reducer.o -g
+mkdir -p source/obj_environment
+cc -Wall -Werror -Wextra -c source/environment/var_utils.c -o source/obj_environment/var_utils.o -g
+mkdir -p source/obj_signals
+cc -Wall -Werror -Wextra -c source/signals/signals.c -o source/obj_signals/signals.o -g
+make -C LIBFT
+cc -Wall -Werror -Wextra  source/obj_parser/minishell_ast_01.o  source/obj_parser/minishell_ast_02.o  source/obj_parser/minishell_ast_03.o  source/obj_parser/minishell_ast_04.o  source/obj_parser/minishell_ast_05.o  source/obj_parser/minishell_check_error_01.o  source/obj_parser/minishell_check_error_02.o  source/obj_parser/minishell_expansion_01.o  source/obj_parser/minishell_heredoc_01.o  source/obj_parser/minishell_parser_functions_01.o  source/obj_parser/minishell_parser_functions_02.o  source/obj_parser/minishell_str_functions_01.o  source/obj_parser/minishell_str_functions_02.o  source/obj_execution/exec_tree.o  source/obj_execution/exec_utils.o  source/obj_execution/main.o  source/obj_init_close/minishell_init_close_01.o  source/obj_init_close/minishell_init_close_02.o  source/obj_error_handling/error_message.o  source/obj_error_handling/minishell_error_handling_01.o  source/obj_built_in/built_in.o  source/obj_built_in/cd.o  source/obj_built_in/echo.o  source/obj_built_in/env.o  source/obj_built_in/exit.o  source/obj_built_in/export.o  source/obj_built_in/pwd.o  source/obj_built_in/unset.o  source/obj_environment/copier.o  source/obj_environment/expander.o  source/obj_environment/reducer.o  source/obj_environment/var_utils.o  source/obj_signals/signals.o LIBFT/libft.a -o minishell -lreadline -g
+echo "[\033[92mSUCCESS\033[0m] MINISHELL - minishell CREATED."
+make: Leaving directory '/home/mikelitoris/42/Rank_3/minishell'
+ 
