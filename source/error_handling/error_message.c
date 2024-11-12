@@ -16,9 +16,9 @@ void	handle_path_errors(char *path, t_data *ms_data)
 		print_exec_error("No such file or directory", path);
 		ms_data->return_code = 127;
 	}
-	else if (errno == EACCES)
+	else if (errno == EISDIR)
 	{
-		print_exec_error("Permission denied", path);
+		print_exec_error("Is a directory", path);
 		ms_data->return_code = 126;
 	}
 	else if (errno == ENOTDIR)
@@ -26,9 +26,9 @@ void	handle_path_errors(char *path, t_data *ms_data)
 		print_exec_error("Not a directory", path);
 		ms_data->return_code = 126;
 	}
-	else if (errno == EISDIR)
+	else if (errno == EACCES)
 	{
-		print_exec_error("Is a directory", path);
+		print_exec_error("Permission denied", path);
 		ms_data->return_code = 126;
 	}
 	else

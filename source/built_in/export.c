@@ -29,7 +29,7 @@ void	handle_export(char **argv, t_data *ms_data)
 			{
 				ms_data->variables = reduce_environment(ms_data->variables, name, ms_data);
 			}
-			ms_data->variables = expand_environment(ms_data->variables, argv[1], ms_data);  // OK! Fully checked
+			ms_data->variables = expand_environment(ms_data->variables, argv[i], ms_data);  // OK! Fully checked
 		}
 		i++;
 	}

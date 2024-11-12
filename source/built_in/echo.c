@@ -9,13 +9,6 @@ void	handle_echo(char **argv)
 	i = 1;
 	print_newline = 1;
 
-	/* print_test();
-	printf("argv[0]: |%s|\n", argv[0]);
-	printf("argv[1]: |%s|\n", argv[1]);
-	printf("argv[2]: |%s|\n", argv[2]);
-	printf("argv[3]: |%s|\n", argv[3]);
-	print_test(); */
-
 	if (argv[1] && !ft_strncmp(argv[1], "-n", 3))
 	{
 		i++;

@@ -4,11 +4,25 @@ char	**expand_environment(char **envp, char *var, t_data *ms_data)
 {
 	char **new_envp;
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
+	if (!var)
+	{
+		print_exec_error("Variable is NULL. Malloc related", var);
+		ms_data->return_code = 1;
+		return (NULL);
+	}
+	if (!envp)
+	{
+		print_exec_error("Environment is NULL. Malloc related", var);
+		ms_data->return_code = 1;
+		return (NULL);
+	}
+	
 	while (envp[i])
 		i++;
-	printf("|%d|\n", i + 2);
 	new_envp = malloc((i + 2) * sizeof(char *));
 	if (!new_envp)
 	{
@@ -28,9 +42,14 @@ char	**expand_environment(char **envp, char *var, t_data *ms_data)
 		}
 		i++;
 	}
+	while (envp[j])
+	{
+		free(envp[j]);
+		j++;
+	}
 	free(envp);
-	printf("|var:%s|\n", var);
-	printf("%d\n", i);
+	printf("|var:%s|\n", var);  //? Debugging statement
+	printf("%d\n", i);  //? Debugging statement
 	new_envp[i] = ft_strdup(var);
 	if (!new_envp[i])
 	{

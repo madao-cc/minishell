@@ -8,7 +8,8 @@ char **copy_environment(char **envp)
 	i = 0;
 	while (envp[i])
 		i++;
-	new_envp = malloc(MAX_ENV * sizeof(char *));
+	printf("i: %d\n", i);
+	new_envp = malloc((i + 1) * sizeof(char *));
 	if (!new_envp)
 	{
 		perror("malloc");
@@ -21,6 +22,11 @@ char **copy_environment(char **envp)
 		if (!new_envp[i])
 		{
 			perror("strdup");
+			while (i > 0)
+			{
+				free(new_envp[i - 1]);
+				i--;
+			}
 			exit(EXIT_FAILURE);
 		}
 		i++;

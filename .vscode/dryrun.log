@@ -26,7 +26,6 @@ mkdir -p source/obj_parser
 cc -Wall -Werror -Wextra -c source/parser/minishell_str_functions_01.c -o source/obj_parser/minishell_str_functions_01.o -g
 mkdir -p source/obj_parser
 cc -Wall -Werror -Wextra -c source/parser/minishell_str_functions_02.c -o source/obj_parser/minishell_str_functions_02.o -g
- 
 mkdir -p source/obj_execution
 cc -Wall -Werror -Wextra -c source/execution/exec_tree.c -o source/obj_execution/exec_tree.o -g
 mkdir -p source/obj_execution
@@ -57,7 +56,6 @@ mkdir -p source/obj_built_in
 cc -Wall -Werror -Wextra -c source/built_in/pwd.c -o source/obj_built_in/pwd.o -g
 mkdir -p source/obj_built_in
 cc -Wall -Werror -Wextra -c source/built_in/unset.c -o source/obj_built_in/unset.o -g
- 
 mkdir -p source/obj_environment
 cc -Wall -Werror -Wextra -c source/environment/copier.c -o source/obj_environment/copier.o -g
 mkdir -p source/obj_environment

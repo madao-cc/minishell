@@ -6,11 +6,24 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:34:04 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/04 15:58:20 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/06 17:26:42 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	free_environment(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}
+	free(envp);
+}
 
 // INITIALIZE STRUCT t_data (MAIN STRUCT)
 t_data	*init_minishell(char **envp)

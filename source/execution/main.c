@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:04:00 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/04 15:51:20 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/12 18:13:48 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,47 +66,16 @@ void	print_tree(t_cmd *node)
 		print_exec(node);
 }
 
-/* int	main(int argc, char *argv[], char *envp[])
-{
-	t_data	*ms_data;
-
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	ms_data = init_minishell();
-	if (ms_data)
-	{
-		ms_data->input = check_readline(readline("minishell: "));
-		if (!ms_data->input)
-			return (EXIT_FAILURE);
-		if (*(ms_data->input) == '\0')
-		{
-			final_clean(ms_data);
-			return (EXIT_SUCCESS);
-		}
-		ms_data->tree = create_tree(ms_data);
-		if (ms_data->tree)
-		{
-			print_tree(ms_data->tree);
-			printf("\n");
-		}
-		final_clean(ms_data);
-		return (EXIT_SUCCESS);
-	}
-	return (EXIT_FAILURE);
-} */
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	*ms_data;
 	t_exec	*exec_cmd;
-	bool		clear;
 	int		status;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	clear = true;
+	ms_data = NULL;
 	if (isatty(STDIN_FILENO))
 	{
 		ms_data = init_minishell(envp);
@@ -117,9 +86,9 @@ int	main(int argc, char **argv, char **envp)
 			if (ms_data->input == NULL)
 			{
 				write(1, "\033[1;31mExiting...\n\033[0m", 23);
+				rl_clear_history();
 				final_clean(ms_data);
-				clear = false;
-				break ;
+				exit(EXIT_SUCCESS);
 			}
 			else if (*(ms_data->input) == '\0')  // ou ft_strcmp(ms_data->input, "") == 0
 			{
@@ -127,11 +96,11 @@ int	main(int argc, char **argv, char **envp)
 				//* free(ms_data->input);
 				continue ;
 			}
-			//TODO verificar input == $?
 			else
 				ms_data->tree = create_tree(ms_data);
 			if (ms_data->tree) // ou ms_data->tree == NULL
 			{
+				/* print_tree(ms_data->tree); */
 				exec_cmd = (t_exec *)ms_data->tree;
 				if (exec_cmd->type == EXEC && search_builtin(exec_cmd->argv[0]))
 				{
@@ -142,6 +111,7 @@ int	main(int argc, char **argv, char **envp)
 					if (fork() == 0)  //TODO funcao seguranca
 					{
 						exec_tree(ms_data->tree, ms_data);
+						final_clean(ms_data);
 						exit(0); // TODO verificar se é necessário
 					}
 					else
@@ -154,10 +124,11 @@ int	main(int argc, char **argv, char **envp)
 			}
 			if (ms_data->input)  // ou ms_data->input != NULL
 				add_history(ms_data->input);
+			//free(ms_data->input);
 		}
 		rl_clear_history();
 	}
-	if (clear)
+	if (ms_data)
 		final_clean(ms_data);
 	return (0);  // TODO verificar se é necessario
 }

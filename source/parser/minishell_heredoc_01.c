@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_heredoc.c                                :+:      :+:    :+:   */
+/*   minishell_heredoc_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:34:31 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 16:34:38 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:28:53 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	write_heredoc(char *delimiter, int fd)
 	size_t	len;
 	char	*line;
 
-	line = check_readline(readline("> "));
+	line = check_readline(readline("$ "));
 	if (!line)
 		return (EXIT_FAILURE);
 	len = ft_strlen(delimiter);
@@ -49,7 +49,7 @@ int	write_heredoc(char *delimiter, int fd)
 	{
 		ft_putendl_fd(line, fd);
 		free(line);
-		line = check_readline(readline("> "));
+		line = check_readline(readline("$ "));
 		if (!line)
 			return (EXIT_FAILURE);
 	}

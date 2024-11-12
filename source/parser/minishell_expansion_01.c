@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_expansion_01.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:17:01 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 21:08:08 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:26:57 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*expand_var(t_data *ms_data, char *start, char *end, char **str)
 		*str = check_str(concat_str(*str, start - 1, start));
 		return (start);
 	}
-	var = getenv(var_name);
+	var = my_getenv(var_name, ms_data->variables);
 	free(var_name);
 	if (var)
 		*str = check_str(concat_str(*str, var, var + ft_strlen(var)));

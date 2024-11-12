@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:00:13 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/04 16:29:12 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/10 16:28:43 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	final_clean(t_data *ms_data);
 //INIT_CLOSE_01
 void	delete_heredoc(void);
 void	delete_variables(char **variables);
+void	free_environment(char **envp);
 
 
 
@@ -158,7 +159,7 @@ int		check_argv(char **argv, int argc);
 
 // EXECUTION
 void	exec_tree(t_cmd *tree, t_data *ms_data);
-char	*find_executable(char *command);
+char	*find_executable(char *command, t_data *ms_data);
 void	handle_redirection(t_redir *redir_cmd);  // NOT IN USE
 
 void	ft_exec_builtin(char **argv, t_data *ms_data);
