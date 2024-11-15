@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:04:00 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/12 18:13:48 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/15 18:12:10 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,25 @@ int	main(int argc, char **argv, char **envp)
 	t_data	*ms_data;
 	t_exec	*exec_cmd;
 	int		status;
+	char	**my_envs;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	ms_data = NULL;
+	my_envs = copy_environment(envp);  // REMOVE THIS
 	if (isatty(STDIN_FILENO))
 	{
-		ms_data = init_minishell(envp);
 		handle_signals(ms_data);
 		while (1)
 		{
+			ms_data = init_minishell(my_envs);  // CHANGE THIS TO ms_data = init_minishell(envp);
 			ms_data->input = readline("minishell: "); //TODO funcao segurança
 			if (ms_data->input == NULL)
 			{
 				write(1, "\033[1;31mExiting...\n\033[0m", 23);
 				rl_clear_history();
-				final_clean(ms_data);
+				clean_shell(ms_data);
 				exit(EXIT_SUCCESS);
 			}
 			else if (*(ms_data->input) == '\0')  // ou ft_strcmp(ms_data->input, "") == 0
@@ -111,7 +113,6 @@ int	main(int argc, char **argv, char **envp)
 					if (fork() == 0)  //TODO funcao seguranca
 					{
 						exec_tree(ms_data->tree, ms_data);
-						final_clean(ms_data);
 						exit(0); // TODO verificar se é necessário
 					}
 					else
@@ -124,11 +125,12 @@ int	main(int argc, char **argv, char **envp)
 			}
 			if (ms_data->input)  // ou ms_data->input != NULL
 				add_history(ms_data->input);
+			clean_shell(ms_data);
 			//free(ms_data->input);
 		}
 		rl_clear_history();
 	}
 	if (ms_data)
-		final_clean(ms_data);
+		clean_shell(ms_data);
 	return (0);  // TODO verificar se é necessario
 }

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Nov 12 16:47:27 2024
+# Make data base, printed on Fri Nov 15 16:30:28 2024
 
 # Variables
 
@@ -20,8 +20,6 @@ LC_ALL = C
 GNOME_SHELL_SESSION_MODE = ubuntu
 # makefile (from 'Makefile', line 8)
 AR = ar -rc
-# environment
-GJS_DEBUG_OUTPUT = stderr
 # makefile (from 'Makefile', line 58)
 OBJS_ENVIRONMENT = $(patsubst $(SRCFOLDER_ENVIRONMENT)/%.c, $(OBJFOLDER_ENVIRONMENT)/%.o, $(SRC_ENVIRONMENT))
 # environment
@@ -31,7 +29,7 @@ LC_NUMERIC = pt_PT.UTF-8
 # environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # environment
-VSCODE_CWD = /home/mikelitoris
+VSCODE_CWD = /home/mikelitoris/minishell_github/minishell
 # makefile (from 'Makefile', line 37)
 OBJFOLDER_ERRORH = source/obj_error_handling
 # makefile (from 'Makefile', line 46)
@@ -51,11 +49,13 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/mikelitoris/42/Rank_3/minishell
+PWD = /home/mikelitoris/minishell_github/minishell
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+OLDPWD = /home/mikelitoris/minishell_github
 # makefile (from 'Makefile', line 28)
 SRCFOLDER_ERRORH = source/error_handling
 # automatic
@@ -69,23 +69,29 @@ SRCFOLDER_PARSER = source/parser
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.U09KX2
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.4DGAX2
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
 # environment
-MEMORY_PRESSURE_WATCH = /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure
+MEMORY_PRESSURE_WATCH = /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/app-gnome\x2dsession\x2dmanager.slice/gnome-session-manager@ubuntu.service/memory.pressure
+# environment
+GNOME_TERMINAL_SERVICE = :1.143
 # makefile
 MAKEFLAGS = pqrRs
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=95a63a8f9df62933408667ab67373dc6
 # makefile
-CURDIR := /home/mikelitoris/42/Rank_3/minishell
+CURDIR := /home/mikelitoris/minishell_github/minishell
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'Makefile', line 53)
 OBJS_PARSER = $(patsubst $(SRCFOLDER_PARSER)/%.c, $(OBJFOLDER_PARSER)/%.o, $(SRC_PARSER))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -111,7 +117,7 @@ OBJS_BUILTIN = $(patsubst $(SRCFOLDER_BUILTIN)/%.c, $(OBJFOLDER_BUILTIN)/%.o, $(
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 3777
+VSCODE_PID = 13246
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -121,13 +127,13 @@ OBJFOLDER_BUILTIN = source/obj_built_in
 # makefile (from 'Makefile', line 40)
 OBJFOLDER_SIGNALS = source/obj_signals
 # environment
-SESSION_MANAGER = local/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:@/tmp/.ICE-unix/1818,unix/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:/tmp/.ICE-unix/1818
+SESSION_MANAGER = local/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:@/tmp/.ICE-unix/1861,unix/mikelitoris-ASUS-EXPERTBOOK-B1402CBA:/tmp/.ICE-unix/1861
 # automatic
 *F = $(notdir $*)
 # environment
 CHROME_DESKTOP = code.desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=95a63a8f9df62933408667ab67373dc6
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
@@ -147,19 +153,17 @@ XMODIFIERS = @im=ibus
 # makefile (from 'Makefile', line 43)
 HEADFOLDER = includes
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+SHLVL = 1
 # environment
-SHLVL = 0
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/a16ac2a3_0d94_4c20_9212_aaf469a30e0c
 # environment
 MAKELEVEL := 0
-# environment
-IM_CONFIG_CHECK_ENV = 1
 # makefile (from 'Makefile', line 26)
 SRCFOLDER_EXECUT = source/execution
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin
+PATH = /home/mikelitoris/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mikelitoris/.local/bin:/home/mikelitoris/.local/bin
 # default
 MAKEFILES := 
 # environment
@@ -172,8 +176,6 @@ HEADER = $(HEADFOLDER)/minishell.h
 LC_TIME = pt_PT.UTF-8
 # makefile (from 'Makefile', line 27)
 SRCFOLDER_INITCL = source/init_close
-# environment
-INVOCATION_ID = 3a0a0f35b00040b3b2bb0cae0615d514
 # environment
 USERNAME = mikelitoris
 # makefile (from 'Makefile', line 30)
@@ -223,6 +225,8 @@ XDG_CURRENT_DESKTOP = Unity
 OBJS_SIGNALS = $(patsubst $(SRCFOLDER_SIGNALS)/%.c, $(OBJFOLDER_SIGNALS)/%.o, $(SRC_SIGNALS))
 # makefile (from 'Makefile', line 50)
 SRC_ENVIRONMENT = $(wildcard $(SRCFOLDER_ENVIRONMENT)/*.c)
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
 # automatic
 +F = $(notdir $+)
 # environment
@@ -233,12 +237,10 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = mikelitoris
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1858
+SYSTEMD_EXEC_PID = 1861
 # makefile (from 'Makefile', line 10)
 RM = rm -f
 # environment
@@ -258,15 +260,13 @@ OBJFOLDER_ENVIRONMENT = source/obj_environment
 # makefile (from 'Makefile', line 31)
 SRCFOLDER_SIGNALS = source/signals
 # environment
-MANAGERPID = 1628
+DBUS_STARTER_BUS_TYPE = session
 # environment
 DEBUGINFOD_URLS = https://debuginfod.ubuntu.com 
 # environment
 LC_MEASUREMENT = pt_PT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3777
-# environment
-_ = /usr/share/code/code
+_ = /usr/bin/code
 # makefile (from 'Makefile', line 16)
 RESET = \033[0m
 # environment
@@ -282,9 +282,9 @@ SRC_INITCL = $(wildcard $(SRCFOLDER_INITCL)/*.c)
 # makefile (from 'Makefile', line 56)
 OBJS_ERRORH = $(patsubst $(SRCFOLDER_ERRORH)/%.c, $(OBJFOLDER_ERRORH)/%.o, $(SRC_ERRORH))
 # environment
-LC_CTYPE = pt_PT.UTF-8
+COLORTERM = truecolor
 # environment
-JOURNAL_STREAM = 8:16886
+LC_CTYPE = pt_PT.UTF-8
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -295,12 +295,15 @@ OBJFOLDER_INITCL = source/obj_init_close
 HOME = /home/mikelitoris
 # environment
 QT_IM_MODULE = ibus
+ 
 # makefile (from 'Makefile', line 55)
 OBJS_INITCL = $(patsubst $(SRCFOLDER_INITCL)/%.c, $(OBJFOLDER_INITCL)/%.o, $(SRC_INITCL))
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-af1ed2d2-1.95-main.sock
+# environment
+TERM = xterm-256color
 # makefile (from 'Makefile', line 22)
 LIBNAME = $(LIBFOLDER)/libft.a
 # environment
@@ -311,8 +314,13 @@ IM_CONFIG_PHASE = 1
 <F = $(notdir $<)
 # default
 SUFFIXES := 
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+VTE_VERSION = 7600
 # makefile (from 'Makefile', line 34)
- 
 OBJFOLDER_PARSER = source/obj_parser
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
@@ -331,7 +339,7 @@ GDMSESSION = ubuntu
 # environment
 LC_IDENTIFICATION = pt_PT.UTF-8
 # variable set hash-table stats:
-# Load=149/1024=15%, Rehash=0, Collisions=22/253=9%
+# Load=153/1024=15%, Rehash=0, Collisions=33/257=13%
 
 # Pattern-specific Variable Values
 
@@ -339,17 +347,17 @@ LC_IDENTIFICATION = pt_PT.UTF-8
 
 # Directories
 
-# source/error_handling (device 66306, inode 31486238): 4 files, no impossibilities.
-# source/parser (device 66306, inode 31486250): 15 files, no impossibilities.
-# source/signals (device 66306, inode 31471006): 3 files, no impossibilities.
-# source/init_close (device 66306, inode 31486243): 4 files, no impossibilities.
-# source/environment (device 66306, inode 31474817): 6 files, no impossibilities.
-# . (device 66306, inode 31486543): 12 files, no impossibilities.
-# includes (device 66306, inode 31486235): No files, no impossibilities so far.
-# source/built_in (device 66306, inode 31474816): 10 files, no impossibilities.
-# source/execution (device 66306, inode 31486240): 5 files, no impossibilities.
+# source/error_handling (device 66306, inode 31489192): 4 files, no impossibilities.
+# source/parser (device 66306, inode 31489242): 15 files, no impossibilities.
+# source/signals (device 66306, inode 31489256): 3 files, no impossibilities.
+# source/init_close (device 66306, inode 31489199): 4 files, no impossibilities.
+# source/environment (device 66306, inode 31489187): 6 files, no impossibilities.
+# . (device 66306, inode 31489047): 11 files, no impossibilities.
+# includes (device 66306, inode 31489174): No files, no impossibilities so far.
+# source/built_in (device 66306, inode 31489178): 10 files, no impossibilities.
+# source/execution (device 66306, inode 31489195): 5 files, no impossibilities.
 
-# 59 files, no impossibilities in 9 directories.
+# 58 files, no impossibilities in 9 directories.
 
 # Implicit Rules
 
@@ -394,7 +402,7 @@ source/obj_signals/%.o: source/signals/%.c includes/minishell.h
 source/obj_built_in/built_in.o: source/built_in/built_in.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'built_in'
-#  Last modified 2024-11-11 15:37:01.61248862
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -404,7 +412,7 @@ source/obj_built_in/built_in.o: source/built_in/built_in.c includes/minishell.h
 source/obj_execution/exec_tree.o: source/execution/exec_tree.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'exec_tree'
-#  Last modified 2024-11-11 16:02:25.564813901
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 76):
@@ -414,42 +422,42 @@ source/obj_execution/exec_tree.o: source/execution/exec_tree.c includes/minishel
 # Not a target:
 includes/minishell.h:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-10 16:28:43.596328423
+#  Last modified 2024-11-15 16:27:42.133166665
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/environment/expander.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-06 17:40:57.251427695
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/execution/exec_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 16:43:01.487223614
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/parser/minishell_expansion_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-10 16:26:57.612250876
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/built_in/exit.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-11 17:04:25.246136733
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_parser_functions_01.o: source/parser/minishell_parser_functions_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_parser_functions_01'
-#  Last modified 2024-11-11 15:37:01.212507771
+#  Last modified 2024-11-15 16:28:19.937595008
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -459,7 +467,7 @@ source/obj_parser/minishell_parser_functions_01.o: source/parser/minishell_parse
 source/obj_parser/minishell_ast_02.o: source/parser/minishell_ast_02.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_ast_02'
-#  Last modified 2024-11-11 15:37:00.982518782
+#  Last modified 2024-11-15 16:28:19.56156923
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -469,7 +477,7 @@ source/obj_parser/minishell_ast_02.o: source/parser/minishell_ast_02.c includes/
 source/obj_built_in/env.o: source/built_in/env.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'env'
-#  Last modified 2024-11-11 15:37:01.723483306
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -478,7 +486,7 @@ source/obj_built_in/env.o: source/built_in/env.c includes/minishell.h
 
 minishell: source/obj_parser/minishell_ast_01.o source/obj_parser/minishell_ast_02.o source/obj_parser/minishell_ast_03.o source/obj_parser/minishell_ast_04.o source/obj_parser/minishell_ast_05.o source/obj_parser/minishell_check_error_01.o source/obj_parser/minishell_check_error_02.o source/obj_parser/minishell_expansion_01.o source/obj_parser/minishell_heredoc_01.o source/obj_parser/minishell_parser_functions_01.o source/obj_parser/minishell_parser_functions_02.o source/obj_parser/minishell_str_functions_01.o source/obj_parser/minishell_str_functions_02.o source/obj_execution/exec_tree.o source/obj_execution/exec_utils.o source/obj_execution/main.o source/obj_init_close/minishell_init_close_01.o source/obj_init_close/minishell_init_close_02.o source/obj_error_handling/error_message.o source/obj_error_handling/minishell_error_handling_01.o source/obj_built_in/built_in.o source/obj_built_in/cd.o source/obj_built_in/echo.o source/obj_built_in/env.o source/obj_built_in/exit.o source/obj_built_in/export.o source/obj_built_in/pwd.o source/obj_built_in/unset.o source/obj_environment/copier.o source/obj_environment/expander.o source/obj_environment/reducer.o source/obj_environment/var_utils.o source/obj_signals/signals.o includes/minishell.h LIBFT/libft.a
 #  Implicit rule search has not been done.
-#  Last modified 2024-11-11 17:08:55.051821285
+#  Last modified 2024-11-15 16:28:20.066603866
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 68):
@@ -489,14 +497,14 @@ minishell: source/obj_parser/minishell_ast_01.o source/obj_parser/minishell_ast_
 # Not a target:
 source/built_in/pwd.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:59:06.333338054
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_built_in/echo.o: source/built_in/echo.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'echo'
-#  Last modified 2024-11-11 15:37:01.688484982
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -506,7 +514,7 @@ source/obj_built_in/echo.o: source/built_in/echo.c includes/minishell.h
 source/obj_built_in/export.o: source/built_in/export.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'export'
-#  Last modified 2024-11-11 15:37:01.788480194
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -516,7 +524,7 @@ source/obj_built_in/export.o: source/built_in/export.c includes/minishell.h
 source/obj_environment/copier.o: source/environment/copier.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'copier'
-#  Last modified 2024-11-11 16:02:25.622814697
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 92):
@@ -526,14 +534,14 @@ source/obj_environment/copier.o: source/environment/copier.c includes/minishell.
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 16:59:07.641504737
+#  Last modified 2024-11-15 16:27:42.133166665
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_environment/var_utils.o: source/environment/var_utils.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'var_utils'
-#  Last modified 2024-11-11 15:37:02.001469996
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 92):
@@ -543,28 +551,28 @@ source/obj_environment/var_utils.o: source/environment/var_utils.c includes/mini
 # Not a target:
 source/parser/minishell_check_error_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/parser/minishell_parser_functions_02.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/signals/signals.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 15:15:55.976474912
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_str_functions_02.o: source/parser/minishell_str_functions_02.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_str_functions_02'
-#  Last modified 2024-11-11 15:37:01.310503079
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -574,7 +582,7 @@ source/obj_parser/minishell_str_functions_02.o: source/parser/minishell_str_func
 # Not a target:
 source/built_in/export.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-06 17:35:24.969291233
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
@@ -593,8 +601,7 @@ clean:
 source/obj_parser/minishell_ast_01.o: source/parser/minishell_ast_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_ast_01'
- 
-#  Last modified 2024-11-11 15:37:00.955520074
+#  Last modified 2024-11-15 16:28:19.48556402
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -613,21 +620,21 @@ valgrind:
 # Not a target:
 source/parser/minishell_ast_02.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/execution/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-11 17:08:48.934812915
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_init_close/minishell_init_close_01.o: source/init_close/minishell_init_close_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_init_close_01'
-#  Last modified 2024-11-11 15:37:01.474495227
+#  Last modified 2024-11-15 16:27:42.138166962
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 84):
@@ -637,8 +644,9 @@ source/obj_init_close/minishell_init_close_01.o: source/init_close/minishell_ini
 source/obj_execution/exec_utils.o: source/execution/exec_utils.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'exec_utils'
-#  Last modified 2024-11-11 15:37:01.399498818
+#  Last modified 2024-11-15 16:27:42.138166962
 #  File has been updated.
+ 
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 76):
 	@mkdir -p $(OBJFOLDER_EXECUT)
@@ -647,7 +655,7 @@ source/obj_execution/exec_utils.o: source/execution/exec_utils.c includes/minish
 source/obj_parser/minishell_ast_05.o: source/parser/minishell_ast_05.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_ast_05'
-#  Last modified 2024-11-11 15:37:01.061515
+#  Last modified 2024-11-15 16:28:19.702578897
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -657,7 +665,7 @@ source/obj_parser/minishell_ast_05.o: source/parser/minishell_ast_05.c includes/
 source/obj_environment/expander.o: source/environment/expander.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'expander'
-#  Last modified 2024-11-11 15:37:01.929473443
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 92):
@@ -673,7 +681,7 @@ re: fclean all
 source/obj_error_handling/minishell_error_handling_01.o: source/error_handling/minishell_error_handling_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_error_handling_01'
-#  Last modified 2024-11-11 15:37:01.580490152
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 88):
@@ -683,7 +691,7 @@ source/obj_error_handling/minishell_error_handling_01.o: source/error_handling/m
 source/obj_execution/main.o: source/execution/main.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  Last modified 2024-11-11 17:08:55.005821216
+#  Last modified 2024-11-15 16:27:42.138166962
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 76):
@@ -693,28 +701,28 @@ source/obj_execution/main.o: source/execution/main.c includes/minishell.h
 # Not a target:
 source/parser/minishell_str_functions_02.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/init_close/minishell_init_close_02.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/parser/minishell_ast_04.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_heredoc_01.o: source/parser/minishell_heredoc_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_heredoc_01'
-#  Last modified 2024-11-11 15:37:01.181509255
+#  Last modified 2024-11-15 16:28:19.891591854
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -724,14 +732,14 @@ source/obj_parser/minishell_heredoc_01.o: source/parser/minishell_heredoc_01.c i
 # Not a target:
 source/built_in/env.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 15:49:52.66471684
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_str_functions_01.o: source/parser/minishell_str_functions_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_str_functions_01'
-#  Last modified 2024-11-11 15:37:01.276504707
+#  Last modified 2024-11-15 16:28:20.031601459
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -741,7 +749,7 @@ source/obj_parser/minishell_str_functions_01.o: source/parser/minishell_str_func
 # Not a target:
 source/parser/minishell_heredoc_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-10 15:28:53.970550427
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
@@ -754,14 +762,14 @@ source/parser/minishell_heredoc_01.c:
 # Not a target:
 source/parser/minishell_str_functions_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_error_handling/error_message.o: source/error_handling/error_message.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'error_message'
-#  Last modified 2024-11-11 15:41:25.906276796
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 88):
@@ -779,7 +787,7 @@ all: minishell
 # Not a target:
 source/init_close/minishell_init_close_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-06 17:26:42.222902492
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 
@@ -798,7 +806,7 @@ fclean: clean
 source/obj_parser/minishell_ast_04.o: source/parser/minishell_ast_04.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_ast_04'
-#  Last modified 2024-11-11 15:37:01.036516197
+#  Last modified 2024-11-15 16:28:19.65857588
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -808,14 +816,14 @@ source/obj_parser/minishell_ast_04.o: source/parser/minishell_ast_04.c includes/
 # Not a target:
 source/environment/var_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:59:38.130697157
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_check_error_01.o: source/parser/minishell_check_error_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_check_error_01'
-#  Last modified 2024-11-11 15:37:01.086513804
+#  Last modified 2024-11-15 16:28:19.74858205
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -825,28 +833,28 @@ source/obj_parser/minishell_check_error_01.o: source/parser/minishell_check_erro
 # Not a target:
 source/parser/minishell_parser_functions_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/parser/minishell_ast_03.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/environment/reducer.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 15:49:52.657716699
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_signals/signals.o: source/signals/signals.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'signals'
-#  Last modified 2024-11-11 15:37:02.035468368
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 96):
@@ -856,7 +864,7 @@ source/obj_signals/signals.o: source/signals/signals.c includes/minishell.h
 source/obj_parser/minishell_check_error_02.o: source/parser/minishell_check_error_02.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_check_error_02'
-#  Last modified 2024-11-11 15:37:01.109512702
+#  Last modified 2024-11-15 16:28:19.792585067
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -866,15 +874,14 @@ source/obj_parser/minishell_check_error_02.o: source/parser/minishell_check_erro
 # Not a target:
 source/error_handling/error_message.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-11 15:41:15.848790222
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_environment/reducer.o: source/environment/reducer.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'reducer'
- 
-#  Last modified 2024-11-11 15:37:01.964471768
+#  Last modified 2024-11-15 16:27:42.137166903
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 92):
@@ -884,14 +891,14 @@ source/obj_environment/reducer.o: source/environment/reducer.c includes/minishel
 # Not a target:
 source/built_in/echo.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-10 11:38:44.417989378
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_built_in/cd.o: source/built_in/cd.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'cd'
-#  Last modified 2024-11-11 15:37:01.649486849
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -901,7 +908,7 @@ source/obj_built_in/cd.o: source/built_in/cd.c includes/minishell.h
 source/obj_built_in/unset.o: source/built_in/unset.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'unset'
-#  Last modified 2024-11-11 15:37:01.863476603
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -911,14 +918,14 @@ source/obj_built_in/unset.o: source/built_in/unset.c includes/minishell.h
 # Not a target:
 source/environment/copier.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-11 16:02:12.697656638
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_init_close/minishell_init_close_02.o: source/init_close/minishell_init_close_02.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_init_close_02'
-#  Last modified 2024-11-11 15:37:01.506493695
+#  Last modified 2024-11-15 16:27:42.138166962
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 84):
@@ -928,21 +935,21 @@ source/obj_init_close/minishell_init_close_02.o: source/init_close/minishell_ini
 # Not a target:
 source/error_handling/minishell_error_handling_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/parser/minishell_ast_01.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_ast_03.o: source/parser/minishell_ast_03.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_ast_03'
-#  Last modified 2024-11-11 15:37:01.00951749
+#  Last modified 2024-11-15 16:28:19.609572521
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -951,7 +958,8 @@ source/obj_parser/minishell_ast_03.o: source/parser/minishell_ast_03.c includes/
 
 LIBFT/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2024-11-11 15:25:22.175400123
+ 
+#  Last modified 2024-11-15 16:27:42.131166546
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 100):
@@ -960,21 +968,21 @@ LIBFT/libft.a:
 # Not a target:
 source/built_in/unset.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 15:49:52.657716699
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/built_in/cd.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 15:49:52.662716799
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_built_in/exit.o: source/built_in/exit.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'exit'
-#  Last modified 2024-11-11 17:08:55.031821255
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -989,14 +997,14 @@ source/obj_built_in/exit.o: source/built_in/exit.c includes/minishell.h
 # Not a target:
 source/parser/minishell_check_error_02.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_parser/minishell_expansion_01.o: source/parser/minishell_expansion_01.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_expansion_01'
-#  Last modified 2024-11-11 15:37:01.138511314
+#  Last modified 2024-11-15 16:28:19.843588563
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -1006,7 +1014,7 @@ source/obj_parser/minishell_expansion_01.o: source/parser/minishell_expansion_01
 source/obj_parser/minishell_parser_functions_02.o: source/parser/minishell_parser_functions_02.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'minishell_parser_functions_02'
-#  Last modified 2024-11-11 15:37:01.245506191
+#  Last modified 2024-11-15 16:28:19.986598367
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 72):
@@ -1016,28 +1024,28 @@ source/obj_parser/minishell_parser_functions_02.o: source/parser/minishell_parse
 # Not a target:
 source/parser/minishell_ast_05.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 14:42:01.278611921
+#  Last modified 2024-11-15 16:27:42.140167081
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/execution/exec_tree.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-11 15:59:45.023301448
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 source/built_in/built_in.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-04 16:28:29.479883517
+#  Last modified 2024-11-15 16:27:42.135166784
 #  File has been updated.
 #  Successfully updated.
 
 source/obj_built_in/pwd.o: source/built_in/pwd.c includes/minishell.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'pwd'
-#  Last modified 2024-11-11 15:37:01.830478183
+#  Last modified 2024-11-15 16:27:42.136166844
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 80):
@@ -1052,12 +1060,12 @@ source/obj_built_in/pwd.o: source/built_in/pwd.c includes/minishell.h
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 177 / storage = 4031 B / avg = 22 B
-# current buf: size = 8162 B / used = 4031 B / count = 177 / avg = 22 B
+# strcache buffers: 1 (0) / strings = 176 / storage = 4025 B / avg = 22 B
+# current buf: size = 8162 B / used = 4025 B / count = 176 / avg = 22 B
 
-# strcache performance: lookups = 321 / hit rate = 44%
+# strcache performance: lookups = 320 / hit rate = 45%
 # hash-table stats:
-# Load=177/8192=2%, Rehash=0, Collisions=2/321=1%
-# Finished Make data base on Tue Nov 12 16:47:27 2024
+# Load=176/8192=2%, Rehash=0, Collisions=2/320=1%
+# Finished Make data base on Fri Nov 15 16:30:28 2024
 
  

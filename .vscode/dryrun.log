@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/mikelitoris/42/Rank_3/minishell'
+make: Entering directory '/home/mikelitoris/minishell_github/minishell'
 mkdir -p source/obj_parser
 cc -Wall -Werror -Wextra -c source/parser/minishell_ast_01.c -o source/obj_parser/minishell_ast_01.o -g
 mkdir -p source/obj_parser
@@ -69,5 +69,5 @@ cc -Wall -Werror -Wextra -c source/signals/signals.c -o source/obj_signals/signa
 make -C LIBFT
 cc -Wall -Werror -Wextra  source/obj_parser/minishell_ast_01.o  source/obj_parser/minishell_ast_02.o  source/obj_parser/minishell_ast_03.o  source/obj_parser/minishell_ast_04.o  source/obj_parser/minishell_ast_05.o  source/obj_parser/minishell_check_error_01.o  source/obj_parser/minishell_check_error_02.o  source/obj_parser/minishell_expansion_01.o  source/obj_parser/minishell_heredoc_01.o  source/obj_parser/minishell_parser_functions_01.o  source/obj_parser/minishell_parser_functions_02.o  source/obj_parser/minishell_str_functions_01.o  source/obj_parser/minishell_str_functions_02.o  source/obj_execution/exec_tree.o  source/obj_execution/exec_utils.o  source/obj_execution/main.o  source/obj_init_close/minishell_init_close_01.o  source/obj_init_close/minishell_init_close_02.o  source/obj_error_handling/error_message.o  source/obj_error_handling/minishell_error_handling_01.o  source/obj_built_in/built_in.o  source/obj_built_in/cd.o  source/obj_built_in/echo.o  source/obj_built_in/env.o  source/obj_built_in/exit.o  source/obj_built_in/export.o  source/obj_built_in/pwd.o  source/obj_built_in/unset.o  source/obj_environment/copier.o  source/obj_environment/expander.o  source/obj_environment/reducer.o  source/obj_environment/var_utils.o  source/obj_signals/signals.o LIBFT/libft.a -o minishell -lreadline -g
 echo "[\033[92mSUCCESS\033[0m] MINISHELL - minishell CREATED."
-make: Leaving directory '/home/mikelitoris/42/Rank_3/minishell'
+make: Leaving directory '/home/mikelitoris/minishell_github/minishell'
  

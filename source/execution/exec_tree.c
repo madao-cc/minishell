@@ -15,6 +15,7 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 	int		pipe_fd[2];
 	pid_t	pid;
 	struct stat file_stat;
+	int	return_code;
 
 	if (tree->type == EXEC)
 	{
@@ -22,7 +23,9 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 		if (search_builtin(exec_cmd->argv[0]))
 		{
 			ft_exec_builtin(exec_cmd->argv, ms_data);
-			exit(ms_data->return_code);
+			return_code = ms_data->return_code;
+			clean_shell(ms_data);
+			exit(return_code);
 		}
 		if (exec_cmd->argv[0][0] == '.' || exec_cmd->argv[0][0] == '/')
 			executable = strdup(exec_cmd->argv[0]);
@@ -33,20 +36,24 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 			if (stat(executable, &file_stat) == 0 && (file_stat.st_mode & S_IFMT) == S_IFDIR)  // Check if the file is a directory
 			{
 				print_exec_error("Is a directory", executable);
-				ms_data->return_code = 126;
+				return_code = 126;
 				free(executable);
-				exit(ms_data->return_code);
+				clean_shell(ms_data);
+				exit(return_code);
 			}
 			execve(executable, exec_cmd->argv, ms_data->variables);
 			handle_path_errors(executable, ms_data);
-	       		free(executable);
-			exit(ms_data->return_code);
+	       		return_code = ms_data->return_code;
+			free(executable);
+			clean_shell(ms_data);
+			exit(return_code);
 		}
 		else
 		{
 			print_exec_error("command not found", exec_cmd->argv[0]);
-			ms_data->return_code = 127;
-			exit(ms_data->return_code);
+			return_code = 127;
+			clean_shell(ms_data);
+			exit(return_code);
 		}
 	}
 	else if (tree->type == REDI)
@@ -57,12 +64,16 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 		if (fd == -1)
 		{
 			handle_path_errors(redir_cmd->file, ms_data);
-			exit(ms_data->return_code);
+			return_code = ms_data->return_code;
+			clean_shell(ms_data);
+			exit(return_code);
 		}
 		if (dup2(fd, redir_cmd->fd) == -1)
 		{
 			print_exec_error(strerror(errno), "dup2");  //! ERROR MESSAGE
-			exit(ms_data->return_code);  //! ERROR MESSAGE
+			return_code = ms_data->return_code;
+			clean_shell(ms_data);
+			exit(return_code);  //! ERROR MESSAGE
 		}
 		close(fd);
 		exec_tree(redir_cmd->cmd, ms_data);
@@ -73,13 +84,15 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 	       	if (pipe(pipe_fd) == -1)  // Create a pipe
 	       	{
 	       		print_exec_error(strerror(errno), "pipe");  //! HANDLE ERROR
-	       		exit(1);  //! HANDLE ERROR - 1 is a generic error code
+	       		clean_shell(ms_data);
+			exit(1);  //! HANDLE ERROR - 1 is a generic error code
 	       	}
 	       	pid = fork();
 	       	if (pid == -1)  // Error handling for fork
 	       	{
 	       		print_exec_error(strerror(errno), "fork");  //! HANDLE ERROR
-	       		exit(1);  //! HANDLE ERROR - 1 is a generic error code
+	       		clean_shell(ms_data);
+			exit(1);  //! HANDLE ERROR - 1 is a generic error code
 	       	}
 	       	if (pid == 0)  // Child process
 	       	{
@@ -87,11 +100,14 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 			if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)  // Redirect the standard output to the write end of the pipe
 			{
 				print_exec_error(strerror(errno), "dup2");  //! HANDLE ERROR
+				clean_shell(ms_data);
 				exit(1);  //! HANDLE ERROR - 1 is a generic error code
 			}
 			close(pipe_fd[1]);  // Close the write end of the pipe
 			exec_tree(pipe_cmd->left, ms_data);  // Execute the command on the left side of the pipe
-			exit(ms_data->return_code);  // Ensure the child process exits after executing the command
+			return_code = ms_data->return_code;
+			clean_shell(ms_data);
+			exit(return_code);  // Ensure the child process exits after executing the command
 		}
 		else  // Parent process
 		{
@@ -99,6 +115,7 @@ void	exec_tree(t_cmd *tree, t_data *ms_data)
 			if (dup2(pipe_fd[0], STDIN_FILENO) == -1)  // Redirect the standard input to the read end of the pipe
 			{
 				print_exec_error(strerror(errno), "dup2");  //! HANDLE ERROR
+				clean_shell(ms_data);
 				exit(1);  //! HANDLE ERROR - 1 is a generic error code
 			}
 			close(pipe_fd[0]);  // Close the read end of the pipe
@@ -136,11 +153,13 @@ char	*find_executable(char *command, t_data *ms_data)  // Find the executable fi
         	if (access(full_path, X_OK) == 0)  // Check if the file is executable
         	{
         		free(path);
+			free(path_env);
 			return strdup(full_path);  // Return the full path of the executable ; NULL if not found
         	}
 		dir = strtok(NULL, ":");  // Move to the next directory
 	}
 	free(path);
+	free(path_env);
 	return (NULL);  // Return NULL if the executable is not found -> //! HANDLE ERROR
 }
 

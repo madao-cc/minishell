@@ -6,6 +6,7 @@ void	handle_export(char **argv, t_data *ms_data)
 	char *name;
 
 	i = 1;
+	name = NULL;
 	while (argv[i])
 	{
 		if (ft_strchr(argv[i], '='))
@@ -30,6 +31,8 @@ void	handle_export(char **argv, t_data *ms_data)
 				ms_data->variables = reduce_environment(ms_data->variables, name, ms_data);
 			}
 			ms_data->variables = expand_environment(ms_data->variables, argv[i], ms_data);  // OK! Fully checked
+			free(name);
+			name = NULL;
 		}
 		i++;
 	}

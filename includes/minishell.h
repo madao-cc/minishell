@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:00:13 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/10 16:28:43 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/15 17:55:12 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ typedef struct s_data
 // INITIALIZE / CLOSE / FREE
 t_data	*init_minishell(char **envp);
 t_cmd	*free_tree(t_cmd *node);
-void	clean_minishell(t_data *ms_data);
-void	final_clean(t_data *ms_data);
+void	clean_shell(t_data *ms_data);
+
 //INIT_CLOSE_01
 void	delete_heredoc(void);
 void	delete_variables(char **variables);

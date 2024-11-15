@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:34:04 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/06 17:26:42 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/15 17:55:18 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	delete_variables(char **variables)
 }
 
 // CLEAN MINISHELL - RESET
-void	clean_minishell(t_data *ms_data)
+void	clean_shell(t_data *ms_data)
 {
 	free(ms_data->prompt);
 	free(ms_data->input);
@@ -97,11 +97,5 @@ void	clean_minishell(t_data *ms_data)
 	ms_data->tree = NULL;
 	ms_data->variables = NULL;
 	ms_data->heredoc_count = 1;
-}
-
-// CLEAN MINISHELL + FREE MAIN STRUCT
-void	final_clean(t_data *ms_data)
-{
-	clean_minishell(ms_data);
 	free(ms_data);
 }
