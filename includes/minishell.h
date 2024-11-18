@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:00:13 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/15 17:55:12 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/16 16:51:37 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	print_test(void);
 // BUILT-IN FUNCTIONS
 bool	search_builtin(char *command);
 
-void	handle_cd(t_data *ms_data);
+void	handle_cd(t_data *ms_data, char **argv);
 void	handle_absolut_path(char *line, t_data *ms_data);
 void	handle_home(t_data *ms_data);
 int	ft_is_char(char c);
@@ -216,5 +216,7 @@ void	handle_path_errors(char *path, t_data *ms_data);
 void handle_signals(t_data *ms_data);
 void handle_sigint(int sig);
 void handle_eof(int sig);
+
+void	update_pwd(char *pwd, t_data *ms_data);
 
 #endif

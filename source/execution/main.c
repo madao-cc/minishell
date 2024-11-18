@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:04:00 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/15 18:12:10 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/16 17:19:46 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	ms_data = NULL;
-	my_envs = copy_environment(envp);  // REMOVE THIS
+	my_envs = copy_environment(envp);  // --------------------
 	if (isatty(STDIN_FILENO))
 	{
 		handle_signals(ms_data);
 		while (1)
 		{
-			ms_data = init_minishell(my_envs);  // CHANGE THIS TO ms_data = init_minishell(envp);
+			ms_data = init_minishell(my_envs);  // ---------------------
+			delete_variables(my_envs);  // --------------------
 			ms_data->input = readline("minishell: "); //TODO funcao segurança
 			if (ms_data->input == NULL)
 			{
@@ -102,11 +103,10 @@ int	main(int argc, char **argv, char **envp)
 				ms_data->tree = create_tree(ms_data);
 			if (ms_data->tree) // ou ms_data->tree == NULL
 			{
-				/* print_tree(ms_data->tree); */
 				exec_cmd = (t_exec *)ms_data->tree;
 				if (exec_cmd->type == EXEC && search_builtin(exec_cmd->argv[0]))
 				{
-					ft_exec_builtin(exec_cmd->argv, ms_data);
+					ft_exec_builtin(exec_cmd->argv, ms_data); // --------------------
 				}
 				else
 				{
@@ -125,12 +125,13 @@ int	main(int argc, char **argv, char **envp)
 			}
 			if (ms_data->input)  // ou ms_data->input != NULL
 				add_history(ms_data->input);
+			my_envs = copy_environment(ms_data->variables);  // --------------
 			clean_shell(ms_data);
-			//free(ms_data->input);
 		}
 		rl_clear_history();
 	}
 	if (ms_data)
 		clean_shell(ms_data);
+	delete_variables(my_envs);  // --------------------
 	return (0);  // TODO verificar se é necessario
 }

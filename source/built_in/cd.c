@@ -1,6 +1,27 @@
 #include "../../includes/minishell.h"
 
-void	handle_cd(t_data *ms_data)  //TODO: Falta caso de environment variable
+void	handle_cd(t_data *ms_data, char **argv)
+{
+	if (!argv[1])
+	{
+		handle_home(ms_data);
+	}
+	else if (argv[1][0] == '~')
+	{
+		handle_home(ms_data);
+	}
+	else if (argv[1][0] == '/')
+	{
+		handle_absolut_path(argv[1], ms_data);
+	}
+	else
+	{
+		handle_relative_path(argv[1], ms_data);
+	}
+
+}
+
+/* void	handle_cd(t_data *ms_data)  //TODO: Falta caso de environment variable
 {
 	char *path;
 	char *trimmed_path;
@@ -9,10 +30,12 @@ void	handle_cd(t_data *ms_data)  //TODO: Falta caso de environment variable
 
 	i = 2;
 	original_path = ft_strdup((const char *)ms_data->input);
+	printf("original_path: %s\n", original_path);
 	path = original_path + 3; // Because i change the pointer to not point to the start of the allocated string, when i call free it wont clear the right way. So original_string :)
+	printf("path: %s\n", path);
 	trimmed_path = ft_strtrim(path, " \n\t");
+	printf("trimmed_path: %s\n", trimmed_path);
 	i = 0;
-	/* printf("trimmed_path: %s\n", trimmed_path); */
 	if (strlen(trimmed_path) == 0 || (strcmp(ft_strtrim(trimmed_path, " \t"), "\n") == 0))
 	{
 			handle_home(ms_data);
@@ -50,7 +73,7 @@ void	handle_cd(t_data *ms_data)  //TODO: Falta caso de environment variable
 		}
 		i++;
 	}
-}
+} */
 
 void	handle_absolut_path(char *line, t_data *ms_data)
 {

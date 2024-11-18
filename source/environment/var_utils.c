@@ -74,3 +74,40 @@ int	is_variable_name_ok(char *name)
 	}
 	return (1);
 }
+
+void	update_pwd(char *old_pwd, t_data *ms_data)
+{
+	char	*new_pwd;
+	char	*old_pwd_str;
+	char	*new_pwd_str;
+
+	old_pwd_str = NULL;
+	new_pwd_str = NULL;
+	new_pwd = getcwd(NULL, 0);
+	if (!new_pwd)
+	{
+		print_exec_error(strerror(errno), "getcwd");
+		ms_data->return_code = 1;
+		return ;
+	}
+	old_pwd_str = ft_strjoin("OLDPWD=", old_pwd);
+	if (find_variable(ms_data->variables, "OLDPWD") == -1)
+		ms_data->variables = expand_environment(ms_data->variables, old_pwd_str, ms_data);
+	else
+	{
+		ms_data->variables = reduce_environment(ms_data->variables, "OLDPWD", ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, old_pwd_str, ms_data);
+	}
+	free(old_pwd_str);
+	new_pwd_str = ft_strjoin("PWD=", new_pwd);
+	if (find_variable(ms_data->variables, "PWD") != -1)
+		ms_data->variables = expand_environment(ms_data->variables, new_pwd_str, ms_data);
+	else
+	{
+		ms_data->variables = reduce_environment(ms_data->variables, "OLDPWD", ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, new_pwd_str, ms_data);
+	}
+	free(new_pwd_str);
+	free(new_pwd);
+	ms_data->return_code = 0;
+}

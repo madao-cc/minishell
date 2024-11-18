@@ -7,45 +7,59 @@ char	**reduce_environment(char **envp, char *var, t_data *ms_data)
 	char	**new_envp;
 	int	i;
 	int	j;
+	int	len;
 
 	index = find_variable(envp, var);
-	i = 0;
-	j = 0;
-	while (envp[i])
-		i++;
-	new_envp = malloc((i - 1) * sizeof(char *));
-	if (!new_envp)
+	if (index == -1)
 	{
-		print_exec_error("Something went wrong within the malloc function. Malloc related", var);
+		print_exec_error("Variable not found", var);
 		ms_data->return_code = 1;
 		return (NULL);
 	}
-	i = 0;
-	while (i != index)
+
+	len = 0;
+	while (envp[len])
+		len++;
+	
+	new_envp = malloc((len) * sizeof(char *));
+	if (!new_envp)
 	{
-		new_envp[j] = ft_strdup(envp[i]);
-		if (!new_envp[j])
-		{
-			perror("strdup");
-			return (NULL);
-		}
-		i++;
-		j++;
+		print_exec_error("Malloc failed", var);
+		ms_data->return_code = 1;
+		return (NULL);
 	}
-	free(envp[index]);
-	while (envp[i + 1])
+
+	i = 0;
+	j = 0;
+	while (i < (len - 1))
 	{
-		new_envp[j] = ft_strdup(envp[i + 1]);
-		if (!new_envp[j])
+		if (i != index)
 		{
-			print_exec_error("Something went wrong within the ft_strdup function. Malloc related", var);
-			ms_data->return_code = 1;
-			return (NULL);
+			new_envp[j] = ft_strdup(envp[i]);
+			if (!new_envp[j])
+			{
+				perror("strdup");
+				while (j >= 0)
+				{
+					free(new_envp[j]);
+					j--;
+				}
+				free(new_envp);
+				ms_data->return_code = 1;
+				return (NULL);
+			}
+			j++;
 		}
 		i++;
-		j++;
 	}
 	new_envp[j] = NULL;
+	
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}
 	free(envp);
 	return (new_envp);
 }

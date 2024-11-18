@@ -8,7 +8,6 @@ char **copy_environment(char **envp)
 	i = 0;
 	while (envp[i])
 		i++;
-	printf("i: %d\n", i);
 	new_envp = malloc((i + 1) * sizeof(char *));
 	if (!new_envp)
 	{
