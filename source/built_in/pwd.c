@@ -1,15 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pwd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 11:49:33 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/11/19 15:36:30 by mikelitoris      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	handle_pwd(char **argv, t_data *ms_data)
 {
 	char	*cwd;
 
-	if (argv[1])
-	{
-		ft_putstr_fd("pwd: too many arguments\n", 2);
-		ms_data->return_code = 2;
-		return ;
-	}
+	(void)argv;
 	cwd = getcwd(NULL, 0);
 	ft_putstr_fd(cwd, 1);
 	ft_putstr_fd("\n", 1);

@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:34:04 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/15 17:55:18 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/19 12:22:41 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_environment(char **envp)
 }
 
 // INITIALIZE STRUCT t_data (MAIN STRUCT)
-t_data	*init_minishell(char **envp)
+t_data	*init_minishell(char **envp, int return_code)
 {
 	t_data	*ms_data;
 
@@ -36,7 +36,7 @@ t_data	*init_minishell(char **envp)
 		ms_data->prompt = NULL;
 		ms_data->input = NULL;
 		ms_data->tree = NULL;
-		ms_data->return_code = 0;
+		ms_data->return_code = return_code;
 		ms_data->heredoc_count = 1;
 		ms_data->variables = copy_environment(envp);
 	}

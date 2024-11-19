@@ -1,14 +1,24 @@
-#include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 11:49:19 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/11/19 14:52:54 by mikelitoris      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../includes/minishell.h"
 
 void	handle_echo(char **argv)
 {
-	int	i;
-	int	print_newline;
+	int		i;
+	int		print_newline;
 
 	i = 1;
 	print_newline = 1;
-
 	if (argv[1] && !ft_strncmp(argv[1], "-n", 3))
 	{
 		i++;
@@ -23,18 +33,4 @@ void	handle_echo(char **argv)
 	}
 	if (print_newline == 1)
 		ft_putstr_fd("\n", 1);
-}
-
-int	str_is_simple(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\"' || str[i] == '\'')
-			return (1);
-		i++;
-	}
-	return (0);
 }

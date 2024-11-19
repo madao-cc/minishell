@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 11:49:22 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/11/19 14:53:59 by mikelitoris      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	handle_env(char **argv, t_data *ms_data)
@@ -7,9 +19,8 @@ void	handle_env(char **argv, t_data *ms_data)
 	i = 0;
 	if (argv[1])
 	{
-		print_exec_error("too many arguments", "env");
-		ms_data->return_code = 2;  //! HANDLE ERROR - 2 for too many arguments or 127 for command not found
-		return ; //! Dont know if im suppose to exit or return
+		prepare_error("too many arguments", "env", ms_data, 2);
+		return ;
 	}
 	while (ms_data->variables[i])
 	{

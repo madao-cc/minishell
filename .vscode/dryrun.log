@@ -58,6 +58,7 @@ mkdir -p source/obj_built_in
 cc -Wall -Werror -Wextra -c source/built_in/unset.c -o source/obj_built_in/unset.o -g
 mkdir -p source/obj_environment
 cc -Wall -Werror -Wextra -c source/environment/copier.c -o source/obj_environment/copier.o -g
+ 
 mkdir -p source/obj_environment
 cc -Wall -Werror -Wextra -c source/environment/expander.c -o source/obj_environment/expander.o -g
 mkdir -p source/obj_environment

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   copier.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 15:37:09 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/11/19 16:52:51 by mikelitoris      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
-char **copy_environment(char **envp)
+char	**copy_environment(char **envp)
 {
 	int		i;
 	char	**new_envp;
@@ -19,17 +31,21 @@ char **copy_environment(char **envp)
 	{
 		new_envp[i] = ft_strdup(envp[i]);
 		if (!new_envp[i])
-		{
-			perror("strdup");
-			while (i > 0)
-			{
-				free(new_envp[i - 1]);
-				i--;
-			}
-			exit(EXIT_FAILURE);
-		}
+			delete_remaining_variables(new_envp, i);
 		i++;
 	}
 	new_envp[i] = NULL;
 	return (new_envp);
+}
+
+void	delete_remaining_variables(char **variables, int len)
+{
+	perror("strdup");
+	while (variables[len] && len > 0)
+	{
+		free(variables[len]);
+		len--;
+	}
+	free(variables);
+	exit(EXIT_FAILURE);
 }

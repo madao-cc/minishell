@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:00:13 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/16 16:51:37 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/19 17:36:22 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_data
 # define MSG_INPUT		"readline: Input error"
 
 // INITIALIZE / CLOSE / FREE
-t_data	*init_minishell(char **envp);
+t_data	*init_minishell(char **envp, int return_code);
 t_cmd	*free_tree(t_cmd *node);
 void	clean_shell(t_data *ms_data);
 
@@ -163,20 +163,20 @@ char	*find_executable(char *command, t_data *ms_data);
 void	handle_redirection(t_redir *redir_cmd);  // NOT IN USE
 
 void	ft_exec_builtin(char **argv, t_data *ms_data);
-void	export_env(t_data *ms_data);
 void	print_test(void);
 
 
 
 // BUILT-IN FUNCTIONS
 bool	search_builtin(char *command);
+void	ft_exec_builtin_2(char **argv, t_data *ms_data, char *pwd);
 
-void	handle_cd(t_data *ms_data, char **argv);
-void	handle_absolut_path(char *line, t_data *ms_data);
-void	handle_home(t_data *ms_data);
+void	handle_cd(t_data *ms_data, char **argv, char *pwd);
+int	handle_absolut_path(char *line, t_data *ms_data);
+int	handle_home(t_data *ms_data);
 int	ft_is_char(char c);
-void	handle_dot_cases(char *line, t_data *ms_data);
-void	handle_relative_path(char *line, t_data *ms_data);
+int	handle_dot_cases(char *line, t_data *ms_data);
+int	handle_relative_path(char *line, t_data *ms_data);
 
 void	handle_echo(char **argv);
 int	str_is_simple(char *str);
@@ -186,6 +186,8 @@ void	handle_env(char **argv, t_data *ms_data);
 void	handle_exit(char **argv, t_data *ms_data);
 
 void	handle_export(char **argv, t_data *ms_data);
+void	export_helper(char *name, t_data *ms_data, int i);
+void	export_env(t_data *ms_data);
 
 void	handle_pwd(char **argv, t_data *ms_data);
 
@@ -211,6 +213,7 @@ void	print_syntax_error(int token);
 
 void	print_exec_error(char *error_message, char *command);
 void	handle_path_errors(char *path, t_data *ms_data);
+void	prepare_error(char *error_message, char *command, t_data *ms_data, int return_code);
 
 // SIGNALS
 void handle_signals(t_data *ms_data);
@@ -218,5 +221,23 @@ void handle_sigint(int sig);
 void handle_eof(int sig);
 
 void	update_pwd(char *pwd, t_data *ms_data);
+
+char	*ft_strsep(char **str, const char *delim);
+size_t	ft_strcspn(const char *s1r, const char *s2r);
+int	ft_strcmp(char *s1, char *s2);
+void	prepare_cd_error(char *error_message, char *command, t_data *ms_data, int return_code, int error_code);
+int	relative_path_helper(char *path, t_data *ms_data);
+void	prepare_exit_error(char *error_message, char *command, char *arg, t_data *ms_data, int return_code);
+int	check_arg2(char **argv, t_data *ms_data);
+void	delete_remaining_variables(char **variables, int len);
+int	initial_checks_expander(char **envp, char *var, t_data *ms_data);
+int	expander_helper(char **envp, char **new_envp, char *var, t_data *ms_data);
+void	delete_remain_reducer(char **variables, int len);
+int	reducer_helper(char **envp, char **new_envp, char *var, t_data *ms_data, int i, int len, int index);
+char	*get_original_path(void);
+char	*get_original_path(void);
+int	cleaner_original_path(char *original_path);
+void	update_old_pwd(char *old_pwd, char *old_pwd_str, t_data *ms_data);
+void	update_new_pwd(char *new_pwd, char *new_pwd_str, t_data *ms_data);
 
 #endif

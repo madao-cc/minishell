@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:04:00 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/16 17:19:46 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/19 14:59:57 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,20 @@ int	main(int argc, char **argv, char **envp)
 	t_exec	*exec_cmd;
 	int		status;
 	char	**my_envs;
+	int	return_code;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	ms_data = NULL;
+	return_code = 0;
 	my_envs = copy_environment(envp);  // --------------------
 	if (isatty(STDIN_FILENO))
 	{
 		handle_signals(ms_data);
 		while (1)
 		{
-			ms_data = init_minishell(my_envs);  // ---------------------
+			ms_data = init_minishell(my_envs, return_code);  // ---------------------
 			delete_variables(my_envs);  // --------------------
 			ms_data->input = readline("minishell: "); //TODO funcao segurança
 			if (ms_data->input == NULL)
@@ -103,6 +105,7 @@ int	main(int argc, char **argv, char **envp)
 				ms_data->tree = create_tree(ms_data);
 			if (ms_data->tree) // ou ms_data->tree == NULL
 			{
+				ms_data->return_code = 0;
 				exec_cmd = (t_exec *)ms_data->tree;
 				if (exec_cmd->type == EXEC && search_builtin(exec_cmd->argv[0]))
 				{
@@ -126,6 +129,7 @@ int	main(int argc, char **argv, char **envp)
 			if (ms_data->input)  // ou ms_data->input != NULL
 				add_history(ms_data->input);
 			my_envs = copy_environment(ms_data->variables);  // --------------
+			return_code = ms_data->return_code;
 			clean_shell(ms_data);
 		}
 		rl_clear_history();
