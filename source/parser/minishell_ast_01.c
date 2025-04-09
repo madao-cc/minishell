@@ -6,7 +6,7 @@
 /*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:04:00 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 12:41:36 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:49:39 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*exec_node(void)
 }
 
 // CREATE REDIRECTION NODE
-t_cmd	*redir_node(t_cmd *sub_node, char *file, int mode, int fd)
+t_cmd	*redir_node(t_cmd *sub_node, t_file *file)
 {
 	t_redir	*node;
 
@@ -36,9 +36,9 @@ t_cmd	*redir_node(t_cmd *sub_node, char *file, int mode, int fd)
 	ft_memset(node, 0, sizeof(*node));
 	node->type = REDI;
 	node->cmd = sub_node;
-	node->file = file;
-	node->mode = mode;
-	node->fd = fd;
+	node->file = file->file;
+	node->mode = file->mode;
+	node->fd = file->fd;
 	return ((t_cmd *)node);
 }
 

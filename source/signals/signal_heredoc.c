@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_utils_2.c                                     :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 16:16:03 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/25 16:16:22 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/11/20 16:26:31 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/12/02 12:20:28 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_valid_dir_token(char *dir)
+void	handle_heredoc(int sig, t_data *ms_data, char *delimiter, int fd)
 {
-	if (!dir || dir[0] == '\0')
-		return (0);
-	return (!(ft_strcmp(dir, ".") == 0 || ft_strcmp(dir, "..") == 0 || \
-	ft_strcmp(dir, "/") == 0 || ft_strcmp(dir, "//") == 0 || \
-	ft_strcmp(dir, "/.") == 0 || ft_strcmp(dir, "/..") == 0));
-}
+	static t_data	*ms_data_tmp;
+	static char		*delimiter_tmp;
+	static int		fd_tmp;
 
-int	is_duplicate_dir(char *dir, char **dirs, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
+	if (sig == -1)
 	{
-		if (ft_strcmp(dir, dirs[i]) == 0)
-			return (1);
-		i++;
+		ms_data_tmp = ms_data;
+		delimiter_tmp = delimiter;
+		fd_tmp = fd;
 	}
-	return (0);
+	else if (sig == SIGINT)
+	{
+		g_sig_num = S_SIGINT;
+		write(1, "\n", 1);
+		exit_heredoc(ms_data_tmp, delimiter_tmp, fd_tmp, SIG_INT_TERM);
+	}
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_parser_functions_01.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madao-da <madao-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 20:16:50 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/02 20:25:49 by antfonse         ###   ########.fr       */
+/*   Created: 2024/11/30 18:47:14 by madao-da          #+#    #+#             */
+/*   Updated: 2024/11/30 18:47:16 by madao-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 // PARSE QUOTES
-static char	*parse_quotes(char *str, int *token)
+static char	*parse_quotes(t_data *ms_data, char *str, int *token)
 {
 	char	quote;
 
@@ -23,7 +23,7 @@ static char	*parse_quotes(char *str, int *token)
 	{
 		if (*str == '\0')
 		{
-			print_error(QUOTE, &quote);
+			print_error(ms_data, QUOTE, &quote);
 			*token = TOKEN_ERROR;
 			return (str);
 		}
@@ -33,7 +33,7 @@ static char	*parse_quotes(char *str, int *token)
 }
 
 // PARSE TEXT
-char	*parse_text(char *str, int *token)
+char	*parse_text(t_data *ms_data, char *str, int *token)
 {
 	*token = TOKEN_TEXT;
 	while (*str != '\0' && !ft_strchr(MS_SPACE, *str) && \
@@ -41,7 +41,7 @@ char	*parse_text(char *str, int *token)
 	{
 		if (ft_strchr(MS_QUOTES, *str))
 		{
-			str = parse_quotes(str, token);
+			str = parse_quotes(ms_data, str, token);
 			if (*token == TOKEN_ERROR)
 				return (str);
 			if (*str != '\0')

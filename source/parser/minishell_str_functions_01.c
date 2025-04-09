@@ -6,7 +6,7 @@
 /*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:32:33 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/02 17:49:13 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/24 05:52:06 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ char	*concat_str(char *str, char *sub_start, char *sub_end)
 
 	str2 = substr(sub_start, sub_end);
 	if (!str2)
-	{
-		free(str);
-		return (NULL);
-	}
+		return (free_str(str));
 	if (!str)
 		return (str2);
 	str3 = ft_strjoin(str, str2);

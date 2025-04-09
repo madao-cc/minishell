@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:37:09 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 16:52:51 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/03 16:31:32 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,20 @@ char	**copy_environment(char **envp)
 
 void	delete_remaining_variables(char **variables, int len)
 {
-	perror("strdup");
+	prepare_error("malloc failed (copier.c(l.43))", "UOPS!", NULL, 1);
 	while (variables[len] && len > 0)
 	{
 		free(variables[len]);
 		len--;
 	}
 	free(variables);
-	exit(EXIT_FAILURE);
+}
+
+void	free_and_copy_environment(char ***my_envs, char **variables)
+{
+	if (*my_envs)
+		delete_variables(*my_envs);
+	*my_envs = copy_environment(variables);
+	if (!*my_envs)
+		exit(EXIT_FAILURE);
 }

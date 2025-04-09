@@ -3,52 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_expansion_01.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:17:01 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/10 16:26:57 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/03 01:27:03 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	putnbr_recursive(int nb, char **nb_char)
-{
-	if ((nb / 10) != 0)
-		putnbr_recursive((nb / 10), nb_char);
-	**nb_char = (nb % 10) + '0';
-	*nb_char = *nb_char + 1;
-}
-
-// GET RETURN CODE
-static char	*get_return_code(t_data *ms_data, char *start, char **str)
-{
-	char	ret_code[RET_CODE_SIZE];
-	char	*ptr_ret;
-
-	ptr_ret = (char *)ret_code;
-	ft_memset(ptr_ret, 0, RET_CODE_SIZE);
-	putnbr_recursive(ms_data->return_code, &ptr_ret);
-	*str = check_str(concat_str(*str, ret_code, (char *)ret_code + \
-	ft_strlen((char *)ret_code)));
-	start++;
-	return (start);
-}
-
 // GET VARIABLE NAME
-static char	*getvarname(char *start, char *end, char **var_name)
+int	getvarname(t_data *ms_data, char **start, char *end, char **var_name)
 {
 	char	*var_start;
 	char	*var_end;
 
-	var_start = start;
-	while (start != end && ft_strchr(MS_VAR_CHAR, *start))
-		start++;
-	var_end = start;
+	var_start = *start;
+	if (*start != end && ft_strchr(MS_DIGITS, **start))
+		return (EXIT_SUCCESS);
+	while (*start != end && ft_strchr(MS_VAR_CHAR, **start))
+		(*start)++;
+	var_end = *start;
 	if (var_start < var_end)
-		*var_name = check_str(substr(var_start, var_end));
-	else
-		*var_name = NULL;
+	{
+		*var_name = check_str(ms_data, substr(var_start, var_end));
+		if (!*var_name)
+			return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+// GET RETURN CODE
+char	*get_return_code(t_data *ms_data, char *start, char **str)
+{
+	char	*ret_str;
+
+	ret_str = check_str(ms_data, ft_itoa(ms_data->return_code));
+	if (ret_str)
+		*str = check_str(ms_data, concat_str(*str, ret_str, ret_str + \
+		ft_strlen(ret_str)));
+	free(ret_str);
+	start++;
+	return (start);
+}
+
+// CASES WHERE VARIABLE NAME IS NULL
+static char	*null_var(t_data *ms_data, char *start, char **str)
+{
+	if (ft_strchr(MS_QUOTES, *start) && *start != '\0')
+		return (start);
+	if (ft_strchr(MS_DIGITS, *start) && *start != '\0' && \
+	ms_data->token != TOKEN_DELI)
+		return (start + 1);
+	*str = check_str(ms_data, concat_str(*str, start - 1, start));
 	return (start);
 }
 
@@ -62,17 +69,19 @@ char	*expand_var(t_data *ms_data, char *start, char *end, char **str)
 	if (*start == '?')
 		return (get_return_code(ms_data, start, str));
 	var_name = NULL;
-	start = getvarname(start, end, &var_name);
-	if (!var_name)
+	if (ms_data-> token != TOKEN_DELI)
 	{
-		if (ft_strchr(MS_QUOTES, *start))
+		if (getvarname(ms_data, &start, end, &var_name) == EXIT_FAILURE)
+		{
+			*str = free_str(*str);
 			return (start);
-		*str = check_str(concat_str(*str, start - 1, start));
-		return (start);
+		}
 	}
-	var = my_getenv(var_name, ms_data->variables);
+	if (!var_name)
+		return (null_var(ms_data, start, str));
+	var = my_getenv_expans(var_name, ms_data->variables);
 	free(var_name);
 	if (var)
-		*str = check_str(concat_str(*str, var, var + ft_strlen(var)));
+		*str = check_str(ms_data, concat_str(*str, var, var + ft_strlen(var)));
 	return (start);
 }

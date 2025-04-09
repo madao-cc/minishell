@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*   By: madao-da <madao-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:49:29 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 15:31:38 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/08 15:54:09 by madao-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,54 @@
 
 void	handle_export(char **argv, t_data *ms_data)
 {
-	int	i;
-	char *name;
+	int		i;
+	char	*tmp;
+	t_var	**vars;
 
-	i = 1;
-	name = NULL;
-	while (argv[i])
+	i = 0;
+	vars = ft_create_bulk_vars(ms_data);
+	while (argv[++i])
 	{
 		if (ft_strchr(argv[i], '='))
 		{
-			name = ft_strndup(argv[i], ft_strchr(argv[i], '=') - argv[i]);
-			if (is_variable_name_ok(name) == 0 || argv[i][0] == '=')
-			{
-				export_helper(name, ms_data, i);
-				break ;
-			}
-			if (find_variable(ms_data->variables, name) != -1)
-				ms_data->variables = reduce_environment(ms_data->variables, name, ms_data);
-			ms_data->variables = expand_environment(ms_data->variables, argv[i], ms_data);
-			free(name);
-			name = NULL;
+			tmp = ft_substr(argv[i], 0, ft_strchr(argv[i], '=') - argv[i]);
+			if (argv[i][0] == '+' || argv[i][0] == '=')
+				ft_xpo(tmp, argv, ms_data, i);
+			else if (tmp && tmp[ft_strlen(tmp) - 1] == '+')
+				case_equal_plus(argv, ms_data, vars, i);
+			else
+				handle_variable(argv, ms_data, i);
+			free(tmp);
 		}
-		i++;
+		else
+			case_no_equal(argv, ms_data, i);
 	}
+	delete_bulk_vars(vars);
 }
 
-void	export_helper(char *name, t_data *ms_data, int i)
+void	ft_xpo(char *tmp, char **argv, t_data *ms_data, int i)
 {
-	prepare_error("Invalid variable name", name, ms_data, 1);
-	free(name);
-	i++;
+	(void)tmp;
+	prepare_error("not a valid identifier", argv[i], ms_data, 1);
 }
 
-void	export_env(t_data *ms_data)
+void	handle_variable(char **argv, t_data *ms_data, int i)
 {
 	char	*name;
-	char	*value;
-	char	**variables;
-	int		i;
-	
-	i = 0;
-	variables = ms_data->variables;
-	while (variables[i] != NULL)
+
+	name = ft_strndup(argv[i], ft_strchr(argv[i], '=') - argv[i]);
+	if (is_variable_name_ok(name) == 0 || argv[i][0] == '=')
 	{
-		name = ft_strndup(variables[i], ft_strchr(variables[i], '=') - variables[i]);
-		value = ft_strchr(variables[i], '=') + 1;
-		printf("declare -x %s=\"%s\"\n", name, value);
+		prepare_error("not a valid identifier", argv[i], ms_data, 1);
 		free(name);
 		i++;
+		return ;
 	}
-	ms_data->return_code = 0;
+	if (find_variable(ms_data->variables, name) != -1)
+		ms_data->variables = \
+		reduce_environment(ms_data->variables, name, ms_data);
+	ms_data->variables = \
+	expand_environment(ms_data->variables, argv[i], ms_data);
+	free(name);
+	name = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 17:36:45 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 17:36:59 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/04 14:29:05 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	update_pwd(char *old_pwd, t_data *ms_data)
 	new_pwd = getcwd(NULL, 0);
 	if (!new_pwd)
 	{
-		print_exec_error(strerror(errno), "getcwd");
+		prepare_error("getcwd failed \
+		(update_export.c(l.23))", "UOPS!", ms_data, 1);
 		ms_data->return_code = 1;
+		free(old_pwd);
 		return ;
 	}
 	new_pwd_str = ft_strjoin("PWD=", new_pwd);
@@ -37,11 +39,14 @@ void	update_pwd(char *old_pwd, t_data *ms_data)
 void	update_old_pwd(char *old_pwd, char *old_pwd_str, t_data *ms_data)
 {
 	if (find_variable(ms_data->variables, "OLDPWD") == -1)
-		ms_data->variables = expand_environment(ms_data->variables, old_pwd_str, ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, \
+		old_pwd_str, ms_data);
 	else
 	{
-		ms_data->variables = reduce_environment(ms_data->variables, "OLDPWD", ms_data);
-		ms_data->variables = expand_environment(ms_data->variables, old_pwd_str, ms_data);
+		ms_data->variables = reduce_environment(ms_data->variables, \
+		"OLDPWD", ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, \
+		old_pwd_str, ms_data);
 	}
 	free(old_pwd_str);
 	free(old_pwd);
@@ -50,11 +55,14 @@ void	update_old_pwd(char *old_pwd, char *old_pwd_str, t_data *ms_data)
 void	update_new_pwd(char *new_pwd, char *new_pwd_str, t_data *ms_data)
 {
 	if (find_variable(ms_data->variables, "PWD") == -1)
-		ms_data->variables = expand_environment(ms_data->variables, new_pwd_str, ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, \
+		new_pwd_str, ms_data);
 	else
 	{
-		ms_data->variables = reduce_environment(ms_data->variables, "PWD", ms_data);
-		ms_data->variables = expand_environment(ms_data->variables, new_pwd_str, ms_data);
+		ms_data->variables = reduce_environment(ms_data->variables, \
+		"PWD", ms_data);
+		ms_data->variables = expand_environment(ms_data->variables, \
+		new_pwd_str, ms_data);
 	}
 	free(new_pwd_str);
 	free(new_pwd);

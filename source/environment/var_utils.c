@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   var_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*   By: madao-da <madao-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 17:32:44 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 17:37:14 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/30 16:22:19 by madao-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *my_getenv(char *var_name, char **variables)
+char	*my_getenv_expans(char *var_name, char **variables)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(var_name);
+	while (variables[i])
+	{
+		if (ft_strncmp(variables[i], var_name, len) == 0 && \
+		variables[i][len] == '=')
+			return (variables[i] + len + 1);
+		i++;
+	}
+	return (NULL);
+}
+
+char	*my_getenv(char *var_name, char **variables)
 {
 	int		i;
 	int		len;
@@ -22,7 +39,8 @@ char *my_getenv(char *var_name, char **variables)
 	len = ft_strlen(var_name);
 	while (variables[i])
 	{
-		if (ft_strncmp(variables[i], var_name, len) == 0 && variables[i][len] == '=')
+		if (ft_strncmp(variables[i], var_name, len) == 0 && \
+		variables[i][len] == '=')
 		{
 			var_value = ft_strdup(variables[i] + len + 1);
 			if (!var_value)

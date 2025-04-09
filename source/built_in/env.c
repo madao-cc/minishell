@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:49:22 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 14:53:59 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/04 20:18:42 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_env(char **argv, t_data *ms_data)
 {
 	int			i;
 
+	ms_data->return_code = 0;
 	i = 0;
 	if (argv[1])
 	{

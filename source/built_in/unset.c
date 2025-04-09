@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:49:40 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 12:13:58 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/11/25 20:46:28 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	handle_unset(char **argv, t_data *ms_data)
 	int	i;
 	int	index;
 
+	ms_data->return_code = 0;
 	i = 1;
 	if (argv[i] == NULL)
 	{
@@ -25,8 +26,10 @@ void	handle_unset(char **argv, t_data *ms_data)
 	}
 	while (argv[i])
 	{
-		if ((index = find_variable(ms_data->variables, argv[i])) != -1)
-			ms_data->variables = reduce_environment(ms_data->variables, argv[i], ms_data);
+		index = find_variable(ms_data->variables, argv[i]);
+		if (index != -1)
+			ms_data->variables = reduce_environment(ms_data->variables, \
+			argv[i], ms_data);
 		i++;
 	}
 }

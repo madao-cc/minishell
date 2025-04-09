@@ -6,7 +6,7 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 12:35:30 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 17:37:18 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/04 18:46:50 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	ft_is_char(char c)
 {
+	if (c == 0)
+		return (1);
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
+		return (0);
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 char	*ft_strsep(char **str, const char *delim)
@@ -26,7 +28,7 @@ char	*ft_strsep(char **str, const char *delim)
 	size_t	i;
 	char	*token;
 	char	*next;
-	
+
 	token = *str;
 	if (token)
 	{
@@ -35,7 +37,7 @@ char	*ft_strsep(char **str, const char *delim)
 		if (token[i])
 		{
 			token[i] = '\0';
-		next = &token[i + 1];
+			next = &token[i + 1];
 		}
 		*str = next;
 	}
@@ -63,28 +65,10 @@ size_t	ft_strcspn(const char *s1r, const char *s2r)
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
 	return (s1[i] - s2[i]);
-}
-
-char	*ft_strndup(const char *s1, size_t n)
-{
-	char	*copy;
-	size_t	i;
-
-	copy = malloc((n + 1) * sizeof(char));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < n && s1[i])
-	{
-		copy[i] = s1[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
 }

@@ -6,7 +6,7 @@
 /*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:01:52 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 21:21:19 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/26 00:23:41 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ static int	arraylen(char **str)
 	return (str2 - str);
 }
 
-static char	**create_new_argv(char **argv, char *stoken)
+static char	**create_new_argv(t_data *ms_data, char **argv, char *stoken)
 {
 	char	**new_argv;
 	int		argc;
 	int		i;
 
 	argc = arraylen(argv);
-	new_argv = check_str_2d((char **)malloc((argc + 2) * sizeof(*new_argv)));
+	new_argv = check_str_2d(ms_data, (char **)malloc((argc + 2) * \
+	sizeof(*new_argv)));
 	if (!new_argv)
 		free(stoken);
 	else
@@ -48,18 +49,22 @@ static char	**create_new_argv(char **argv, char *stoken)
 	return (new_argv);
 }
 
-int	fill_argv(char *stoken, t_exec *exec)
+int	fill_argv(t_data *ms_data, char *stoken, t_exec *exec)
 {
 	char	**new_argv;
 
-	if (*stoken == '\0')
+	if (*stoken == '\0' && ms_data->no_string == true)
+	{
+		ms_data->no_string = false;
+		free(stoken);
 		return (EXIT_SUCCESS);
-	new_argv = create_new_argv(exec->argv, stoken);
+	}
+	new_argv = create_new_argv(ms_data, exec->argv, stoken);
 	if (!new_argv)
 		return (EXIT_FAILURE);
 	free(exec->argv);
 	exec->argv = new_argv;
-	if (check_argv(exec->argv, arraylen(exec->argv)) == EXIT_FAILURE)
+	if (check_argv(ms_data, exec->argv, arraylen(exec->argv)) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

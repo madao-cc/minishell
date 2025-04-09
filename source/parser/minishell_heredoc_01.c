@@ -3,91 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_heredoc_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 01:34:31 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/10 15:28:53 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/12/03 01:35:57 by antfonse          #+#    #+#             */
+/*   Updated: 2024/12/03 01:37:27 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// CREATE FILENAME FOR NEXT HEREDOC FILE
-static char	*heredoc_filename(t_data *ms_data)
+// CASES WHERE VARIABLE NAME IS NULL - HEREDOC
+static char	*null_var_heredoc(t_data *ms_data, char *start, char **str)
 {
-	char	*filename0;
-	char	*filename1;
-	char	index[RET_CODE_SIZE];
-	char	*ptr_index;
-
-	if (ms_data->heredoc_count > 999)
-	{
-		print_error(HEREDOC, "");
-		return (NULL);
-	}
-	ft_memset(index, 0, RET_CODE_SIZE);
-	ptr_index = (char *)index;
-	putnbr_recursive(ms_data->heredoc_count, &ptr_index);
-	filename0 = check_str(ft_strjoin(HEREDOC_FILE, index));
-	if (!filename0)
-		return (NULL);
-	filename1 = check_str(ft_strjoin(filename0, HEREDOC_EXTEN));
-	free(filename0);
-	return (filename1);
+	if (ft_strchr(MS_DIGITS, *start) && *start != '\0' && \
+	ms_data->text_quotes == false)
+		return (start + 1);
+	*str = check_str(ms_data, concat_str(*str, start - 1, start));
+	return (start);
 }
 
-int	write_heredoc(char *delimiter, int fd)
+// EXPAND VARIABLE - HEREDOC
+static char	*expand_var_heredoc(t_data *ms_data, char *start, char *end, \
+char **str)
 {
-	size_t	len;
-	char	*line;
+	char	*var_name;
+	char	*var;
 
-	line = check_readline(readline("$ "));
-	if (!line)
-		return (EXIT_FAILURE);
-	len = ft_strlen(delimiter);
-	while (ft_strncmp(delimiter, line, len) != 0 || ft_strlen(line) != len)
+	start++;
+	if (*start == '?')
+		return (get_return_code(ms_data, start, str));
+	var_name = NULL;
+	if (ms_data-> text_quotes == false)
 	{
-		ft_putendl_fd(line, fd);
-		free(line);
-		line = check_readline(readline("$ "));
-		if (!line)
-			return (EXIT_FAILURE);
+		if (getvarname(ms_data, &start, end, &var_name) == EXIT_FAILURE)
+		{
+			*str = free_str(*str);
+			return (start);
+		}
 	}
-	free(line);
-	return (EXIT_SUCCESS);
+	if (!var_name)
+		return (null_var_heredoc(ms_data, start, str));
+	var = my_getenv_expans(var_name, ms_data->variables);
+	free(var_name);
+	if (var)
+		*str = check_str(ms_data, concat_str(*str, var, var + ft_strlen(var)));
+	return (start);
 }
 
-// CREATE HEREDOC FILES AND WRITE IN THEM
-static char	*heredoc_file(t_data *ms_data, char *delimiter)
+// ADD PLAIN TEXT - HEREDOC
+static char	*text_heredoc(t_data *ms_data, char *start, char *end, char **str)
 {
-	int		fd;
-	char	*filename;
+	char	*sub_start;
+	char	*sub_end;
 
-	filename = heredoc_filename(ms_data);
-	if (!filename)
-		return (NULL);
-	fd = check_fd(open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0664));
-	if (fd == -1)
-		return (NULL);
-	ms_data->heredoc_count++;
-	if (write_heredoc(delimiter, fd) == EXIT_FAILURE)
-	{
-		free(filename);
-		filename = NULL;
-	}
-	free(delimiter);
-	close(fd);
-	return (filename);
+	sub_start = start;
+	while (start < end && *start != '$')
+		start++;
+	sub_end = start;
+	if (sub_start < sub_end)
+		*str = check_str(ms_data, concat_str(*str, sub_start, sub_end));
+	return (start);
 }
 
-// CREATE HEREDOC REDIRECTION NODE
-t_cmd	*heredoc_node(t_data *ms_data, t_cmd *node, char *delimiter)
+// CREATE A SUBSTRING FROM POINTER START TO POINTER END EXPANDING VARIABLES
+// HEREDOC
+char	*substr_heredoc(t_data *ms_data, char *start, char *end)
 {
-	char	*heredoc_name;
+	char	*str;
 
-	heredoc_name = heredoc_file(ms_data, delimiter);
-	if (!heredoc_name)
-		return (free_tree(node));
-	node = seq_redir(node, heredoc_name, O_RDONLY, 0);
-	return (node);
+	str = check_str(ms_data, (char *)ft_calloc(sizeof(char), sizeof(char)));
+	if (!str)
+		return (NULL);
+	while (start < end)
+	{
+		if (*start == '$')
+			start = expand_var_heredoc(ms_data, start, end, &str);
+		else
+			start = text_heredoc(ms_data, start, end, &str);
+		if (!str)
+			return (NULL);
+	}
+	return (str);
 }

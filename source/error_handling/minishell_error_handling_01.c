@@ -3,70 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_error_handling_01.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madao-da <madao-da@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 20:25:19 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 17:54:48 by antfonse         ###   ########.fr       */
+/*   Created: 2024/11/30 18:46:10 by madao-da          #+#    #+#             */
+/*   Updated: 2024/11/30 18:46:12 by madao-da         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// PRINT ERROR MESSAGE WITH SPECIFIC INFORMATION
-static void	print_error_msg(char *msg, char *info)
+void	set_return_code(t_data *ms_data, int error_code)
+{
+	if (error_code == MALLOC || error_code == FORK || error_code == REDIR_FILE)
+		ms_data->return_code = GENERAL_ERROR;
+	if (error_code == SYNTAX || error_code == QUOTE)
+		ms_data->return_code = SHELL_BUILT_IN;
+	if (error_code == ARG_LIMIT || error_code == HEREDOC)
+		ms_data->return_code = CMD_NOT_EXEC;
+}
+
+// PRINT ERROR MESSAGE WITH SPECIFIC INFORMATION FOR QUOTES
+void	print_error_msg_quotes(char *msg, char *info)
 {
 	ft_putstr_fd(MSG_MINISHELL, STDERR_FILENO);
-	if (*info == '\0')
-		ft_putendl_fd(msg, STDERR_FILENO);
-	else
-	{
-		ft_putstr_fd(msg, STDERR_FILENO);
-		ft_putendl_fd(info, STDERR_FILENO);
-	}
-}
-
-// PRINT ERROR MESSAGE WITH SPECIFIC INFORMATION (BACKWARDS)
-static void	print_error_msg_reverse(char *msg, char *info)
-{
-	ft_putstr_fd(MSG_MINISHELL, STDERR_FILENO);
-	if (*info == '\0')
-		ft_putendl_fd(msg, STDERR_FILENO);
-	else
-	{
-		ft_putstr_fd(info, STDERR_FILENO);
-		ft_putendl_fd(msg, STDERR_FILENO);
-	}
-}
-
-// PRINT ERROR MESSAGE ACCORDING TO ERROR CODE
-void	print_error(int error_code, char *error_info)
-{
-	if (error_code == MALLOC)
-		print_error_msg(MSG_MALLOC, "");
-	if (error_code == SYNTAX)
-		print_error_msg(MSG_SYNTAX, error_info);
-	if (error_code == QUOTE)
-		print_error_msg(MSG_QUOTE, error_info);
-	if (error_code == ARG_LIMIT)
-		print_error_msg_reverse(MSG_ARG_LIMIT, error_info);
-	if (error_code == HEREDOC)
-		print_error_msg(MSG_HEREDOC, "");
-	if (error_code == INPUT)
-		print_error_msg(MSG_INPUT, "");
-}
-
-void	print_syntax_error(int token)
-{
-	if (token == TOKEN_PIPE)
-		print_error(SYNTAX, "`|\'");
-	if (token == TOKEN_INPU)
-		print_error(SYNTAX, "`<\'");
-	if (token == TOKEN_OUTP)
-		print_error(SYNTAX, "`>\'");
-	if (token == TOKEN_DELI)
-		print_error(SYNTAX, "`<<\'");
-	if (token == TOKEN_APPE)
-		print_error(SYNTAX, "`>>\'");
-	if (token == TOKEN_EOF)
-		print_error(SYNTAX, "`new line\'");
+	ft_putstr_fd(msg, STDERR_FILENO);
+	write(STDERR_FILENO, info, 1);
+	write(STDERR_FILENO, "\n", 1);
 }

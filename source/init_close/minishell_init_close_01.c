@@ -5,97 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 18:34:04 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/19 12:22:41 by mikelitoris      ###   ########.fr       */
+/*   Created: 2024/10/20 19:18:50 by antfonse          #+#    #+#             */
+/*   Updated: 2024/11/27 15:10:10 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_environment(char **envp)
+// FREES STRING AND SETS POINTER TO NULL
+char	*free_str(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		free(envp[i]);
-		i++;
-	}
-	free(envp);
+	free(str);
+	return (NULL);
 }
 
-// INITIALIZE STRUCT t_data (MAIN STRUCT)
-t_data	*init_minishell(char **envp, int return_code)
+// FREE EXECUTION NODE
+void	free_exec(t_cmd *node)
 {
-	t_data	*ms_data;
+	t_exec	*exec_node;
+	char	**argv;
+	int		i;
 
-	ms_data = (t_data *)malloc(sizeof(*ms_data));
-	if (ms_data)
+	exec_node = (t_exec *)node;
+	if (exec_node->argv)
 	{
-		ms_data->prompt = NULL;
-		ms_data->input = NULL;
-		ms_data->tree = NULL;
-		ms_data->return_code = return_code;
-		ms_data->heredoc_count = 1;
-		ms_data->variables = copy_environment(envp);
-	}
-	return (ms_data);
-}
-
-// DELETE HEREDOC FILES
-void	delete_heredoc(void)
-{
-	DIR				*heredoc_folder;
-	struct dirent	*entry;
-	char			*filename;
-
-	heredoc_folder = opendir(HEREDOC_FOLDER);
-	if (heredoc_folder)
-	{
-		entry = readdir(heredoc_folder);
-		while (entry)
+		argv = exec_node->argv;
+		i = 0;
+		while (argv[i])
 		{
-			if (ft_strnstr(entry->d_name, HEREDOC_NAME, \
-			sizeof(HEREDOC_NAME) - 1))
-			{
-				filename = ft_strjoin(HEREDOC_FOLDER, entry->d_name);
-				if (filename)
-					unlink(filename);
-				free(filename);
-			}
-			entry = readdir(heredoc_folder);
+			free(argv[i]);
+			i++;
 		}
-		closedir(heredoc_folder);
+		free(argv);
+		exec_node->argv = NULL;
 	}
+	free(node);
 }
 
-// DELETE VARIABLES
-void	delete_variables(char **variables)
+// FREE REDIRECTION NODE
+static void	free_redir(t_cmd *node)
 {
-	int	i;
+	t_redir	*redir_node;
 
-	i = 0;
-	while (variables[i])
+	redir_node = (t_redir *)node;
+	free(redir_node->file);
+	redir_node->cmd = free_tree(redir_node->cmd);
+	free(node);
+}
+
+// FREE PIPE NODE
+static void	free_pipe(t_cmd *node)
+{
+	t_pipe	*pipe_node;
+
+	pipe_node = (t_pipe *)node;
+	pipe_node->left = free_tree(pipe_node->left);
+	pipe_node->right = free_tree(pipe_node->right);
+	free(node);
+}
+
+// FREE ABSTRACT SYNTAX TREE
+t_cmd	*free_tree(t_cmd *node)
+{
+	if (node)
 	{
-		free(variables[i]);
-		i++;
+		if (node->type == PIPE)
+			free_pipe(node);
+		else if (node->type == REDI)
+			free_redir(node);
+		else if (node->type == EXEC)
+			free_exec(node);
 	}
-	free(variables);
-}
-
-// CLEAN MINISHELL - RESET
-void	clean_shell(t_data *ms_data)
-{
-	free(ms_data->prompt);
-	free(ms_data->input);
-	ms_data->tree = free_tree(ms_data->tree);
-	delete_heredoc();
-	delete_variables(ms_data->variables);
-	ms_data->prompt = NULL;
-	ms_data->input = NULL;
-	ms_data->tree = NULL;
-	ms_data->variables = NULL;
-	ms_data->heredoc_count = 1;
-	free(ms_data);
+	return (NULL);
 }

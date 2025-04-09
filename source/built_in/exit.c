@@ -6,47 +6,80 @@
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:49:25 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 15:31:06 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/04 15:04:11 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	handle_exit(char **argv, t_data *ms_data)
+static long long	ft_strtoll_helper(char *str, long long result, int sign)
 {
-	int		exit_code;
-	int		i;
+	int	digit;
 
-	exit_code = 0;
-	i = 0;
-	if (argv[1])
+	while (*str >= '0' && *str <= '9')
 	{
-		if (check_arg2(argv, ms_data) == 1)
-			return;
-		write (1, "exit\n", 5);
-		while (argv[1][i])
+		digit = *str - '0';
+		if (result > (LLONG_MAX - digit) / 10)
 		{
-			if (!ft_isdigit(argv[1][i]) && (i != 0 || argv[1][i] != '-'))
-			{
-				prepare_exit_error("numeric argument required", "exit", argv[1], ms_data, 2);
-				exit_code = 2;
-				break;
-			}
-			i++;
+			errno = ERANGE;
+			if (sign == 1)
+				return (LLONG_MAX);
+			else
+				return (LLONG_MIN);
 		}
-		if (exit_code == 0)
-			exit_code = atoi(argv[1]) % 256;
+		result = result * 10 + digit;
+		str++;
 	}
-	ms_data->return_code = exit_code;
-	exit(exit_code);
+	return (result);
 }
 
-int	check_arg2(char **argv, t_data *ms_data)
+static long long	ft_strtoll(const char *str, char **endptr)
 {
-	if (argv[2])
+	long long	result;
+	int			sign;
+	int			i;
+
+	errno = 0;
+	i = 0;
+	result = 0;
+	sign = 1;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		prepare_error("too many arguments", "exit", ms_data, 1);
-		return (1);
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	return (0);
+	result = ft_strtoll_helper((char *)str + i, result, sign);
+	if (endptr)
+		*endptr = (char *)str;
+	return (result * sign);
+}
+
+void	handle_exit(char **argv, t_data *ms_data, char *pwd)
+{
+	int			exit_code;
+	char		*endptr;
+	long long	num;
+
+	check_print_exit();
+	exit_code = ms_data->return_code;
+	if (argv[1])
+	{
+		num = ft_strtoll(argv[1], &endptr);
+		if (check_required_args(argv[1], ms_data, num) == 1)
+		{
+			prepare_exit_numeric("numeric argument required", argv, \
+			ms_data, 2);
+			prepare_to_exit(ms_data, pwd, 2);
+		}
+		if (check_arg2(argv, ms_data) == 1)
+			return ;
+		else
+		{
+			exit_code = num % 256;
+			if (exit_code < 0)
+				exit_code = exit_code + 256;
+		}
+	}
+	prepare_to_exit(ms_data, pwd, exit_code);
 }

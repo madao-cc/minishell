@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_2.c                                             :+:      :+:    :+:   */
+/*   cd_relative_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:51:52 by mikelitoris       #+#    #+#             */
-/*   Updated: 2024/11/19 17:24:32 by mikelitoris      ###   ########.fr       */
+/*   Updated: 2024/12/04 11:12:40 by mikelitoris      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	handle_relative_path(char *line, t_data *ms_data)
 {
 	char	*path;
 	char	*original_path;
+	char	*full_path;
 
+	full_path = ft_strdup(line);
 	original_path = get_original_path();
 	path = ft_strsep(&line, "/");
 	while (path != NULL)
@@ -24,31 +26,27 @@ int	handle_relative_path(char *line, t_data *ms_data)
 		if (ft_strcmp(path, "~") == 0)
 		{
 			if (handle_home(ms_data) == 1)
-			{
-				return(cleaner_original_path(original_path));
-			}
-			
+				return (cleaner_original_path(original_path, full_path));
 		}
 		else if (ft_strcmp(path, "") != 0)
 		{
-			if (relative_path_helper(path, ms_data) == 1)
-			{
-				return(cleaner_original_path(original_path));
-			}
+			if (relative_path_helper(path, ms_data, full_path) == 1)
+				return (cleaner_original_path(original_path, full_path));
 		}
 		path = ft_strsep(&line, "/");
 	}
+	free(full_path);
 	free(original_path);
 	return (0);
 }
 
-int	relative_path_helper(char *path, t_data *ms_data)
+int	relative_path_helper(char *path, t_data *ms_data, char *line)
 {
 	if (ft_strcmp(path, ".") == 0)
 	{
 		if (chdir(".") == -1)
 		{
-			prepare_cd_error("cd", path, ms_data, 1, errno);
+			prepare_cd_error("cd", line, ms_data, errno);
 			return (1);
 		}
 	}
@@ -56,7 +54,7 @@ int	relative_path_helper(char *path, t_data *ms_data)
 	{
 		if (chdir("..") == -1)
 		{
-			prepare_cd_error("cd", path, ms_data, 1, errno);
+			prepare_cd_error("cd", line, ms_data, errno);
 			return (1);
 		}
 	}
@@ -64,7 +62,7 @@ int	relative_path_helper(char *path, t_data *ms_data)
 	{
 		if (chdir(path) == -1)
 		{
-			prepare_cd_error("cd", path, ms_data, 1, errno);
+			prepare_cd_error("cd", line, ms_data, errno);
 			return (1);
 		}
 	}
@@ -84,9 +82,10 @@ char	*get_original_path(void)
 	return (original_path);
 }
 
-int	cleaner_original_path(char *original_path)
+int	cleaner_original_path(char *original_path, char *full_path)
 {
 	chdir(original_path);
 	free(original_path);
+	free(full_path);
 	return (1);
 }

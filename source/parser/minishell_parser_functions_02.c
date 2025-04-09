@@ -6,7 +6,7 @@
 /*   By: antfonse <antfonse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 01:21:06 by antfonse          #+#    #+#             */
-/*   Updated: 2024/11/03 12:20:28 by antfonse         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:29:19 by antfonse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*set_token(char *str, int *token, int token_symbol)
 }
 
 // GET TOKEN
-static char	*get_token(char *str, int *token)
+static char	*get_token(t_data *ms_data, char *str, int *token)
 {
 	if (*str == '\0')
 		*token = TOKEN_EOF;
@@ -52,12 +52,12 @@ static char	*get_token(char *str, int *token)
 			str = set_token(str, token, TOKEN_APPE);
 	}
 	else
-		str = parse_text(str, token);
+		str = parse_text(ms_data, str, token);
 	return (str);
 }
 
 // PARSE NEXT TOKEN IN INPUT LINE
-int	parse_token(char **input, char **stoken, char **etoken)
+int	parse_token(t_data *ms_data, char **input, char **stoken, char **etoken)
 {
 	char	*str;
 	int		token;
@@ -67,7 +67,7 @@ int	parse_token(char **input, char **stoken, char **etoken)
 		str++;
 	if (stoken)
 		*stoken = str;
-	str = get_token(str, &token);
+	str = get_token(ms_data, str, &token);
 	if (token == TOKEN_ERROR)
 		return (token);
 	if (etoken)

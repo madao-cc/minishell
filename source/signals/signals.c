@@ -1,43 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mikelitoris <mikelitoris@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 15:56:47 by mikelitoris       #+#    #+#             */
+/*   Updated: 2024/12/04 14:07:32 by mikelitoris      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
-void handle_signals(t_data *ms_data);
-void handle_sigint(int sig);
-void handle_eof(int sig);
-
-void handle_signals(t_data *ms_data)
+void	update_codes_130(t_data *ms_data, int *return_code)
 {
-	struct sigaction sa_int;
-	struct sigaction sa_quit;
-	struct sigaction sa_eof;
-
-	(void)ms_data;
-	sa_int.sa_handler = handle_sigint;
-	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = SA_RESTART;  // Restart functions if interrupted by handler
-	sigaction(SIGINT, &sa_int, NULL);
-
-	sa_quit.sa_handler = SIG_IGN;  // Ignore the signal to prevent the shell from printing ^\(:D)
-	sigemptyset(&sa_quit.sa_mask);
-	sa_quit.sa_flags = SA_RESTART;
-	sigaction(SIGQUIT, &sa_quit, NULL);
-
-	sa_eof.sa_handler = handle_eof;
-	sigemptyset(&sa_eof.sa_mask);
-	sa_eof.sa_flags = SA_RESTART;
-	sigaction(SIGTERM, &sa_eof, NULL);
+	ms_data->return_code = 130;
+	*return_code = 130;
+	g_sig_num = NO_SIG;
 }
 
-void handle_sigint(int sig)
+void	handle_signals(void)
 {
-    	(void)sig;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	signal(SIGINT, handle_sigint_parent);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-void handle_eof(int sig)
+void	handle_sigint_parent(int sig)
 {
-	(void)sig;
-	write(1, "exit\n", 5);
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		g_sig_num = S_SIGINT;
+	}
 }
